@@ -27,6 +27,11 @@ categories, notes and automatic expiry.
 - The plugin window (`/xivignore`)
 - Slash command: `/xivignore add First Last@World`
 
+> **Tip:** By default, adding (right-click or command) first opens a **review window** — check
+> or adjust what will be ignored (filters, category, note, duration), then confirm with **Enter**
+> or close it to add nothing. Prefer instant one-click adds? Turn this off under
+> **Settings → "Confirm before adding"**.
+
 ## Commands
 | Command | Action |
 |---|---|
