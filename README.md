@@ -28,7 +28,7 @@ categories, notes and automatic expiry.
 ## Not a competitor to Visibility
 XIVIgnore is **not** a competitor to, or a replacement for,
 [Visibility](https://github.com/SheepGoMeh/VisibilityPlugin) — and it makes **no claim** to be
-"better". They solve different problems, and many people happily run both:
+"better". They solve different problems:
 
 - **Visibility** declutters your view and helps performance — hide players, pets and chocobos
   *by group* (party, friends, free company, dead), plus its VoidList. Huge respect to that project.
@@ -71,8 +71,8 @@ plugin handle a given player. (XIVIgnore's model-hide is experimental and off by
 
 ## Privacy & fair play
 - Your list is stored **locally** on your machine; nothing is sent anywhere.
-- Purely **client-side filtering** — it does not change the game server, the real ignore
-  list, or automate any gameplay.
+- Purely **client-side filtering** — it does not communicate with the game server, change the
+  real ignore list, or automate any gameplay.
 - Ignored players stay fully visible during combat/duty/party content.
 
 ## Known limitations
@@ -81,8 +81,9 @@ plugin handle a given player. (XIVIgnore's model-hide is experimental and off by
   suppression isn't currently possible, but it's on the radar.
 
 ## Source code
-Closed for now. XIVIgnore is a purely client-side quality-of-life filter — it doesn't
-automate gameplay or communicate with the game server.
+Closed for now, with plans to open-source it once it's polished. XIVIgnore is a purely
+client-side quality-of-life filter — it doesn't automate gameplay or communicate with the
+game server.
 
 ## Support
 Found a bug or have a request? [Open an issue](https://github.com/VelvetFFXIV/XIVIgnore/issues).
