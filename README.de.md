@@ -29,7 +29,7 @@ mit Kategorien, Notizen und automatischem Ablauf.
 
 > **Hinweis:** Standardmäßig öffnet das Hinzufügen (Rechtsklick oder Befehl) zuerst ein
 > **Prüf-Fenster** — kontrolliere oder ändere, was ignoriert wird (Wirkung, Kategorie, Notiz,
-> Dauer) und bestätige mit **Enter** oder schließe es, ohne etwas hinzuzufügen. Lieber sofort
+> Dauer) und bestätige es zum Hinzufügen oder schließe es, ohne etwas hinzuzufügen. Lieber sofort
 > mit einem Klick? Schalte das unter **Einstellungen → „Vor dem Hinzufügen bestätigen"** ab.
 
 ## Befehle
