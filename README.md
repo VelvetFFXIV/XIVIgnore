@@ -57,6 +57,12 @@ categories, notes and automatic expiry.
   list, or automate any gameplay.
 - Ignored players stay fully visible during combat/duty/party content.
 
+## Known limitations
+- **Chat sound isn't filtered yet** — when a listed player's chat is hidden, the game still
+  plays the incoming-tell/whisper *sound*; only the text is suppressed. Clean per-player sound
+  suppression isn't currently possible, but it's on the radar. Workaround: turn the tell sound
+  off in FFXIV's Character Configuration (Log Window settings).
+
 ## Source code
 Closed for now. XIVIgnore is a purely client-side quality-of-life filter — it doesn't
 automate gameplay or communicate with the game server.
