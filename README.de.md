@@ -28,7 +28,7 @@ mit Kategorien, Notizen und automatischem Ablauf.
 ## Keine Konkurrenz zu Visibility
 XIVIgnore ist **kein** Konkurrent und **kein** Ersatz für
 [Visibility](https://github.com/SheepGoMeh/VisibilityPlugin) — und erhebt **nicht** den Anspruch,
-„besser" zu sein. Beide lösen unterschiedliche Probleme, und viele nutzen problemlos beide:
+„besser" zu sein. Beide lösen unterschiedliche Probleme:
 
 - **Visibility** entrümpelt die Sicht und hilft der Performance — Spieler, Pets und Chocobos
   *gruppenweise* ausblenden (Party, Freunde, Free Company, Tote), plus die VoidList. Großer
@@ -73,8 +73,8 @@ experimentell und standardmäßig aus.)
 
 ## Datenschutz & Fair Play
 - Deine Liste liegt **lokal** auf deinem Rechner; nichts wird irgendwohin gesendet.
-- Reines **clientseitiges Filtern** — es ändert weder den Spielserver noch die echte
-  Ignore-Liste und automatisiert nichts.
+- Reines **clientseitiges Filtern** — es kommuniziert nicht mit dem Spielserver, ändert nicht
+  die echte Ignore-Liste und automatisiert nichts.
 - Ignorierte Spieler bleiben in Kampf-/Duty-/Gruppen-Inhalten voll sichtbar.
 
 ## Bekannte Einschränkungen
@@ -84,8 +84,9 @@ experimentell und standardmäßig aus.)
   aber auf dem Schirm.
 
 ## Quellcode
-Aktuell nicht öffentlich. XIVIgnore ist ein rein clientseitiger Komfort-Filter — es
-automatisiert nichts und kommuniziert nicht mit dem Spielserver.
+Aktuell nicht öffentlich — eine Open-Source-Veröffentlichung ist aber geplant, sobald es
+ausgereift ist. XIVIgnore ist ein rein clientseitiger Komfort-Filter — es automatisiert
+nichts und kommuniziert nicht mit dem Spielserver.
 
 ## Support
 Bug gefunden oder einen Wunsch? [Mach ein Issue auf](https://github.com/VelvetFFXIV/XIVIgnore/issues).
