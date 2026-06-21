@@ -61,7 +61,7 @@ mit Kategorien, Notizen und automatischem Ablauf.
 - **Chat-Sound wird noch nicht gefiltert** — wenn der Chat eines gelisteten Spielers
   ausgeblendet wird, spielt das Spiel den Tell-/Wisper-*Sound* trotzdem; nur der Text wird
   unterdrückt. Eine saubere Stummschaltung pro Spieler ist derzeit nicht möglich, wir haben es
-  aber auf dem Schirm. Workaround: Tell-Sound in der FFXIV-Charakterkonfiguration (Log-Fenster) abschalten.
+  aber auf dem Schirm.
 
 ## Quellcode
 Aktuell nicht öffentlich. XIVIgnore ist ein rein clientseitiger Komfort-Filter — es
