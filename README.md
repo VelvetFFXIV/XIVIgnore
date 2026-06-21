@@ -16,8 +16,11 @@ categories, notes and automatic expiry.
 - **Hide character model** (experimental, off by default)
 - **Categories** (Harassment, Spam, Spoiler, RMT, Misc) with default actions + per-entry overrides
 - **Notes** and **auto-expiry** (minutes → months, or permanent)
-- **Party awareness** — warns you in chat and marks an ignored player in the party list
+- **Party awareness** — warns you in chat and marks a listed player in the party list
   and the Social window if one joins your party (incl. cross-world)
+- **Watch-only entries** — add someone with **no** effect checked to just *flag* them: they're
+  still shown in red and trigger the party warning, but nothing is hidden or filtered
+  (a community-requested feature)
 - **Safety first** — ignored players stay **visible in combat, duties and your party**,
   so you never lose track of mechanics
 - **English & German UI**, follows your Dalamud language (switches live)
