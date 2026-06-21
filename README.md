@@ -25,6 +25,24 @@ categories, notes and automatic expiry.
   so you never lose track of mechanics
 - **English & German UI**, follows your Dalamud language (switches live)
 
+## Not a competitor to Visibility
+XIVIgnore is **not** a competitor to, or a replacement for,
+[Visibility](https://github.com/SheepGoMeh/VisibilityPlugin) — and it makes **no claim** to be
+"better". They solve different problems, and many people happily run both:
+
+- **Visibility** declutters your view and helps performance — hide players, pets and chocobos
+  *by group* (party, friends, free company, dead), plus its VoidList. Huge respect to that project.
+- **XIVIgnore** is a *per-player* ignore/moderation tool — hide a specific person's chat,
+  Party Finder listings and nameplates (optionally their model), organised with categories,
+  notes and auto-expiry.
+
+Want group-based hiding, or hiding pets/chocobos? Use **Visibility** — it does that well, and
+XIVIgnore intentionally doesn't try to.
+
+**If you run both:** both plugins hide a character's *model* via the same game render flag, so
+telling *both* to hide the *same* player can cause flicker. For model-hiding, let just one
+plugin handle a given player. (XIVIgnore's model-hide is experimental and off by default.)
+
 ## Adding players
 - **Right-click** a player → *Add to virtual ignore list* → pick a duration
 - The plugin window (`/xivignore`)
