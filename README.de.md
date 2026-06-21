@@ -16,8 +16,11 @@ mit Kategorien, Notizen und automatischem Ablauf.
 - **Charaktermodell ausblenden** (experimentell, standardmäßig aus)
 - **Kategorien** (Belästigung, Spam, Spoiler, RMT, Sonstiges) mit Standard-Wirkung + Eintrag-Override
 - **Notizen** und **Auto-Ablauf** (Minuten → Monate, oder dauerhaft)
-- **Party-Hinweis** — warnt im Chat und markiert einen ignorierten Spieler in der Partyliste
+- **Party-Hinweis** — warnt im Chat und markiert einen gelisteten Spieler in der Partyliste
   und im Social-Fenster, wenn er in deine Gruppe kommt (auch Cross-World)
+- **Nur-Beobachten-Einträge** — jemanden **ohne** angehakte Wirkung hinzufügen, um ihn nur zu
+  *markieren*: weiterhin rot hervorgehoben + Party-Hinweis, aber nichts wird ausgeblendet oder
+  gefiltert (von der Community gewünscht)
 - **Sicherheit zuerst** — ignorierte Spieler bleiben **im Kampf, in Duties und in deiner
   Gruppe sichtbar**, damit du Mechaniken nie aus den Augen verlierst
 - **Englische & deutsche UI**, folgt deiner Dalamud-Sprache (wechselt live)
