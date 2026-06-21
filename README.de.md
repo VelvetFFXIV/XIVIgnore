@@ -56,7 +56,7 @@ mit Kategorien, Notizen und automatischem Ablauf.
 
 ## Quellcode
 Aktuell nicht öffentlich. XIVIgnore ist ein rein clientseitiger Komfort-Filter — es
-automatisiert nichts und greift nicht in den Spielserver ein.
+automatisiert nichts und kommuniziert nicht mit dem Spielserver.
 
 ## Support
 Bug gefunden oder einen Wunsch? [Mach ein Issue auf](https://github.com/VelvetFFXIV/XIVIgnore/issues).
