@@ -56,7 +56,7 @@ categories, notes and automatic expiry.
 
 ## Source code
 Closed for now. XIVIgnore is a purely client-side quality-of-life filter — it doesn't
-automate gameplay or touch the game server.
+automate gameplay or communicate with the game server.
 
 ## Support
 Found a bug or have a request? [Open an issue](https://github.com/VelvetFFXIV/XIVIgnore/issues).
