@@ -25,6 +25,26 @@ mit Kategorien, Notizen und automatischem Ablauf.
   Gruppe sichtbar**, damit du Mechaniken nie aus den Augen verlierst
 - **Englische & deutsche UI**, folgt deiner Dalamud-Sprache (wechselt live)
 
+## Keine Konkurrenz zu Visibility
+XIVIgnore ist **kein** Konkurrent und **kein** Ersatz für
+[Visibility](https://github.com/SheepGoMeh/VisibilityPlugin) — und erhebt **nicht** den Anspruch,
+„besser" zu sein. Beide lösen unterschiedliche Probleme, und viele nutzen problemlos beide:
+
+- **Visibility** entrümpelt die Sicht und hilft der Performance — Spieler, Pets und Chocobos
+  *gruppenweise* ausblenden (Party, Freunde, Free Company, Tote), plus die VoidList. Großer
+  Respekt an das Projekt.
+- **XIVIgnore** ist ein *per-Spieler* Ignore-/Moderations-Tool — Chat, Party-Finder-Einträge und
+  Namensschilder einer bestimmten Person ausblenden (optional das Modell), mit Kategorien,
+  Notizen und Auto-Ablauf.
+
+Du willst gruppenweises Ausblenden oder Pets/Chocobos verstecken? Dafür ist **Visibility** da —
+das macht es gut, und XIVIgnore versucht das bewusst gar nicht erst.
+
+**Wenn du beide nutzt:** Beide blenden das *Modell* über dasselbe Render-Flag des Spiels aus —
+denselben Spieler in *beiden* auszublenden kann daher flackern. Lass fürs Modell-Ausblenden
+nur **ein** Plugin den jeweiligen Spieler übernehmen. (XIVIgnores Modell-Ausblenden ist
+experimentell und standardmäßig aus.)
+
 ## Spieler hinzufügen
 - **Rechtsklick** auf einen Spieler → *Zur virtuellen Ignore-Liste* → Dauer wählen
 - Das Plugin-Fenster (`/xivignore`)
