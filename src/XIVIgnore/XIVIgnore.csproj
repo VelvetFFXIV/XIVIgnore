@@ -1,0 +1,66 @@
+<Project Sdk="Dalamud.NET.Sdk/15.0.0">
+  <PropertyGroup>
+    <!-- Fallback version; overwritten by the AutoIncrementRevision target on real builds. -->
+    <Version>0.0.0.1</Version>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <!--
+    Privacy in the PUBLISHED (Release) build: don't emit a PDB/debug directory.
+    Strips the embedded local build path and SourceLink from the DLL/PDB.
+    Debug builds (dev-load) keep their symbols.
+  -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <Deterministic>true</Deterministic>
+    <PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+    <!-- Keep git origin out of the built DLL: otherwise PublishRepositoryUrl/SourceLink would embed
+         the RepositoryUrl and commit hash as assembly metadata. PublishRepositoryUrl=false is the key switch. -->
+    <PublishRepositoryUrl>false</PublishRepositoryUrl>
+    <EnableSourceLink>false</EnableSourceLink>
+    <SourceControlInformationFeatureSupported>false</SourceControlInformationFeatureSupported>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+
+  <!--
+    Auto-increment the revision: EVERY real (compiling) build bumps the last version
+    part by 1 (0.0.0.N). The counter lives in build.counter (local, gitignored).
+    Runs before CoreGenerateAssemblyInfo so AssemblyVersion/FileVersion (and thus the
+    Dalamud manifest) carry the new value. Design-time builds (IDE) are skipped.
+  -->
+  <Target Name="AutoIncrementRevision"
+          BeforeTargets="GetAssemblyVersion;CoreGenerateAssemblyInfo"
+          Condition="'$(DesignTimeBuild)' != 'true'">
+    <PropertyGroup>
+      <_CounterFile>$(MSBuildProjectDirectory)\build.counter</_CounterFile>
+    </PropertyGroup>
+    <ReadLinesFromFile File="$(_CounterFile)" Condition="Exists('$(_CounterFile)')">
+      <Output TaskParameter="Lines" PropertyName="_LastRev" />
+    </ReadLinesFromFile>
+    <PropertyGroup>
+      <_LastRev Condition="'$(_LastRev)' == ''">1</_LastRev>
+      <_NextRev>$([MSBuild]::Add($(_LastRev), 1))</_NextRev>
+      <Version>0.0.0.$(_NextRev)</Version>
+      <VersionPrefix>0.0.0.$(_NextRev)</VersionPrefix>
+      <AssemblyVersion>0.0.0.$(_NextRev)</AssemblyVersion>
+      <FileVersion>0.0.0.$(_NextRev)</FileVersion>
+      <InformationalVersion>0.0.0.$(_NextRev)</InformationalVersion>
+    </PropertyGroup>
+    <WriteLinesToFile File="$(_CounterFile)" Lines="$(_NextRev)" Overwrite="true" />
+    <Message Importance="high" Text="XIVIgnore Build-Version: 0.0.0.$(_NextRev)" />
+  </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\XIVIgnore.Core\XIVIgnore.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\en.json" />
+    <EmbeddedResource Include="Localization\de.json" />
+  </ItemGroup>
+</Project>

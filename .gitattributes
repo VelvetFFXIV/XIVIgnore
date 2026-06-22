@@ -1,0 +1,6 @@
+* text=auto
+*.cs text diff=csharp
+*.md text
+*.json text
+# Shell-Skripte MÜSSEN LF behalten, sonst bricht bash (Shebang/Heredoc) unter Windows-Checkout.
+*.sh text eol=lf

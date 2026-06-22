@@ -1,0 +1,50 @@
+<Project>
+
+  <!--
+    Directory.Build.props
+    ========================================================================
+    Automatically loaded by MSBuild for EVERY project below this folder.
+    Belongs in the repo root (next to the .editorconfig).
+
+    THIS FILE IS THE SWITCH THAT MAKES THE .editorconfig RULES TAKE EFFECT
+    DURING `dotnet build` AND IN CI. Without it the strict rules only apply
+    in the IDE, not in the build.
+  -->
+
+  <PropertyGroup>
+    <!-- Language/compiler base. TargetFramework is deliberately NOT set here: each
+         project defines its own TFM (Core: net10.0; plugin: net10.0-windows via
+         Dalamud.NET.Sdk). A TFM line here would conflict with that. -->
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- ===== The decisive switches ===== -->
+
+    <!-- Enables the Roslyn analyzers (CA rules). On by default since .NET 5, set
+         explicitly for clarity and for projects targeting other TFMs. -->
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+
+    <!-- Enables ALL quality rules (CA category) as the baseline. The .editorconfig
+         then tunes individual ones (none/warning/error) and the exceptions.
+         NOTE: because of this switch, bulk-severity lines
+         (dotnet_analyzer_diagnostic.severity = ...) in the .editorconfig are ignored
+         for *.cs - so the .editorconfig only tunes individual rules. -->
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <AnalysisLevel>latest</AnalysisLevel>
+
+    <!-- Runs the IDE style rules (IDE####) during `dotnet build`/CI too.
+         WITHOUT THIS the style rules from the .editorconfig are ignored in the build. -->
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+
+    <!-- Every warning becomes an error -> a red build on violations. This is what makes
+         "strict" actually strict. Together with the switches above, both style AND
+         quality violations fail the build. -->
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
+    <!-- Deterministic builds (same inputs -> same binaries). -->
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,28 @@
+# Build output
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+
+# Rider / JetBrains
+.idea/
+
+# Visual Studio
+.vs/
+
+# NuGet
+*.nupkg
+packages/
+packages.lock.json
+
+# Dalamud dev-build artifacts
+dist/
+*.zip
+
+# Misc
+*.log
+
+# Local build counter (auto-incremented plugin revision)
+build.counter

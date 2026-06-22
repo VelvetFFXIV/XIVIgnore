@@ -70,6 +70,9 @@ plugin handle a given player. (XIVIgnore's model-hide is experimental and off by
 3. **Save** → open the Plugin Installer → search **XIVIgnore** → **Install**
 
 ## Privacy & fair play
+- **No tracking IDs.** Listed players are keyed only by the public character **name + home world**
+  you already see — XIVIgnore stores **no ContentId** or any unique character/account identifier, and
+  cannot follow anyone across a name change or world transfer.
 - Your list is stored **locally** on your machine; nothing is sent anywhere.
 - Purely **client-side filtering** — it does not communicate with the game server, change the
   real ignore list, or automate any gameplay.
@@ -81,9 +84,9 @@ plugin handle a given player. (XIVIgnore's model-hide is experimental and off by
   suppression isn't currently possible, but it's on the radar.
 
 ## Source code
-Closed for now, with plans to open-source it once it's polished. XIVIgnore is a purely
-client-side quality-of-life filter — it doesn't automate gameplay or communicate with the
-game server.
+XIVIgnore is **open source** under the **GNU AGPL-3.0** license — the full source lives in
+this repository. It's a purely client-side quality-of-life filter — it doesn't automate
+gameplay or communicate with the game server.
 
 ## Support
 Found a bug or have a request? [Open an issue](https://github.com/VelvetFFXIV/XIVIgnore/issues).

@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <!--
+    Privacy in the PUBLISHED (Release) build: don't emit a PDB/debug directory.
+    This strips both the embedded local build path and the SourceLink reference to the
+    source repo from the DLL/PDB. Debug builds (dev-load) keep their symbols.
+    PathMap is an extra safeguard in case a source path is embedded anywhere.
+  -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <Deterministic>true</Deterministic>
+    <PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+    <!-- Keep git origin (RepositoryUrl/commit) out of the built DLL. -->
+    <PublishRepositoryUrl>false</PublishRepositoryUrl>
+    <EnableSourceLink>false</EnableSourceLink>
+    <SourceControlInformationFeatureSupported>false</SourceControlInformationFeatureSupported>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+</Project>
