@@ -70,7 +70,7 @@
   "edit.current": "Aktuell: {0}",
   "edit.resetExpiry": "Ablauf neu setzen",
   "edit.unknownWorld": "Unbekannte Welt!",
-  "edit.charHideOff": "„Charakter ausblenden\" ist in den Einstellungen aus — bis du es dort aktivierst, wird nur das Namensschild ausgeblendet.",
+  "edit.charHideOff": "„Charakter ausblenden\" ist in den Einstellungen aus — dort aktivieren, um diesen Effekt zu nutzen.",
 
   "cat.newHint": "Neue Kategorie",
   "cat.create": "Anlegen",

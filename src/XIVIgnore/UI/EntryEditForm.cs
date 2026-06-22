@@ -146,6 +146,9 @@ public sealed class EntryEditForm
         ImGui.TextUnformatted(_loc.Get("edit.effectOverride"));
         ImGui.Checkbox(_loc.Get("edit.useCategoryDefault") + "##editUseCategory", ref _useCategory);
 
+        // Character is only selectable while the global switch in the settings is on.
+        var charHideAllowed = _config.CharacterHideFilterEnabled;
+
         // Character implies Nameplate: while Character is on, Nameplate is forced + locked
         // (the nameplate is tied to the character model).
         if (!_useCategory && _characterHide)
@@ -176,15 +179,24 @@ public sealed class EntryEditForm
         }
 
         ImGui.SameLine();
+        if (!charHideAllowed)
+        {
+            ImGui.BeginDisabled(true);
+        }
+
         ImGui.Checkbox(_loc.Get("common.character") + "##editChar", ref _characterHide);
+        if (!charHideAllowed)
+        {
+            ImGui.EndDisabled();
+        }
+
         if (_useCategory)
         {
             ImGui.EndDisabled();
         }
 
-        // The "hide character" effect only takes hold when the global (experimental) switch
-        // in the settings is on. Otherwise only the nameplate vanishes → clear hint.
-        if (_characterHide && !_config.CharacterHideFilterEnabled)
+        // Switch off: the box above is disabled — point the user to the setting.
+        if (!charHideAllowed)
         {
             ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.82f, 0.25f, 1f));
             ImGui.TextWrapped(_loc.Get("edit.charHideOff"));

@@ -70,7 +70,7 @@
   "edit.current": "Current: {0}",
   "edit.resetExpiry": "Reset expiry",
   "edit.unknownWorld": "Unknown world!",
-  "edit.charHideOff": "'Hide character' is off in Settings — only the nameplate is hidden until you enable it there.",
+  "edit.charHideOff": "'Hide character' is off in Settings — enable it there to use this effect.",
 
   "cat.newHint": "New category",
   "cat.create": "Create",
