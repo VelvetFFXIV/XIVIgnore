@@ -33,17 +33,15 @@ XIVIgnore ist **kein** Konkurrent und **kein** Ersatz für
 - **Visibility** entrümpelt die Sicht und hilft der Performance — Spieler, Pets und Chocobos
   *gruppenweise* ausblenden (Party, Freunde, Free Company, Tote), plus die VoidList. Großer
   Respekt an das Projekt.
-- **XIVIgnore** ist ein *per-Spieler* Ignore-/Moderations-Tool — Chat, Party-Finder-Einträge und
-  Namensschilder einer bestimmten Person ausblenden (optional das Modell), mit Kategorien,
-  Notizen und Auto-Ablauf.
+- **XIVIgnore** arbeitet pro Spieler — ein Ignore-/Moderations-Tool für eine bestimmte Person
+  statt für ganze Gruppen.
 
 Du willst gruppenweises Ausblenden oder Pets/Chocobos verstecken? Dafür ist **Visibility** da —
 das macht es gut, und XIVIgnore versucht das bewusst gar nicht erst.
 
 **Wenn du beide nutzt:** Beide blenden das *Modell* über dasselbe Render-Flag des Spiels aus —
 denselben Spieler in *beiden* auszublenden kann daher flackern. Lass fürs Modell-Ausblenden
-nur **ein** Plugin den jeweiligen Spieler übernehmen. (XIVIgnores Modell-Ausblenden ist
-experimentell und standardmäßig aus.)
+nur **ein** Plugin den jeweiligen Spieler übernehmen.
 
 ## Spieler hinzufügen
 - **Rechtsklick** auf einen Spieler → *Zur virtuellen Ignore-Liste* → Dauer wählen
@@ -79,7 +77,6 @@ experimentell und standardmäßig aus.)
 - Deine Liste liegt **lokal** auf deinem Rechner; nichts wird irgendwohin gesendet.
 - Reines **clientseitiges Filtern** — es kommuniziert nicht mit dem Spielserver, ändert nicht
   die echte Ignore-Liste und automatisiert nichts.
-- Ignorierte Spieler bleiben in Kampf-/Duty-/Gruppen-Inhalten voll sichtbar.
 
 ## Bekannte Einschränkungen
 - **Chat-Sound wird noch nicht gefiltert** — wenn der Chat eines gelisteten Spielers
@@ -89,8 +86,7 @@ experimentell und standardmäßig aus.)
 
 ## Quellcode
 XIVIgnore ist **Open Source** unter der **GNU AGPL-3.0**-Lizenz — der vollständige Quellcode
-liegt in diesem Repository. Es ist ein rein clientseitiger Komfort-Filter — es automatisiert
-nichts und kommuniziert nicht mit dem Spielserver.
+liegt in diesem Repository.
 
 ## Support
 Bug gefunden oder einen Wunsch? [Mach ein Issue auf](https://github.com/VelvetFFXIV/XIVIgnore/issues).

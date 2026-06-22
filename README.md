@@ -32,16 +32,15 @@ XIVIgnore is **not** a competitor to, or a replacement for,
 
 - **Visibility** declutters your view and helps performance — hide players, pets and chocobos
   *by group* (party, friends, free company, dead), plus its VoidList. Huge respect to that project.
-- **XIVIgnore** is a *per-player* ignore/moderation tool — hide a specific person's chat,
-  Party Finder listings and nameplates (optionally their model), organised with categories,
-  notes and auto-expiry.
+- **XIVIgnore** works one player at a time — an ignore/moderation tool aimed at a specific
+  person rather than whole groups.
 
 Want group-based hiding, or hiding pets/chocobos? Use **Visibility** — it does that well, and
 XIVIgnore intentionally doesn't try to.
 
 **If you run both:** both plugins hide a character's *model* via the same game render flag, so
 telling *both* to hide the *same* player can cause flicker. For model-hiding, let just one
-plugin handle a given player. (XIVIgnore's model-hide is experimental and off by default.)
+plugin handle a given player.
 
 ## Adding players
 - **Right-click** a player → *Add to virtual ignore list* → pick a duration
@@ -76,7 +75,6 @@ plugin handle a given player. (XIVIgnore's model-hide is experimental and off by
 - Your list is stored **locally** on your machine; nothing is sent anywhere.
 - Purely **client-side filtering** — it does not communicate with the game server, change the
   real ignore list, or automate any gameplay.
-- Ignored players stay fully visible during combat/duty/party content.
 
 ## Known limitations
 - **Chat sound isn't filtered yet** — when a listed player's chat is hidden, the game still
@@ -85,8 +83,7 @@ plugin handle a given player. (XIVIgnore's model-hide is experimental and off by
 
 ## Source code
 XIVIgnore is **open source** under the **GNU AGPL-3.0** license — the full source lives in
-this repository. It's a purely client-side quality-of-life filter — it doesn't automate
-gameplay or communicate with the game server.
+this repository.
 
 ## Support
 Found a bug or have a request? [Open an issue](https://github.com/VelvetFFXIV/XIVIgnore/issues).
