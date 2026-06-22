@@ -2,59 +2,52 @@
 
 # XIVIgnore
 
-> Virtually extends the in-game ignore list — client-side, in your client only.
+> A bigger ignore list for FFXIV, kept on your own machine.
 
-FFXIV's real ignore list is small and server-side. **XIVIgnore** keeps your own local
-"extended ignore list" and filters those players **on your client**: hide their chat,
-Party Finder listings, nameplates, or even their character model — organised with
-categories, notes and automatic expiry.
+FFXIV's built-in ignore list is short and lives on the server. XIVIgnore keeps a longer
+one locally and quietly filters the people on it: their chat, their Party Finder listings,
+their nameplates, and if you want, their character model. Sort entries into categories,
+leave yourself a note, and let them expire on their own.
 
 ## Features
-- **Hide chat** from listed players (per-channel configurable)
-- **Hide Party Finder listings** from listed hosts
-- **Hide nameplates** of listed players
-- **Hide character model** (experimental, off by default)
-- **Categories** (Harassment, Spam, Spoiler, RMT, Misc) with default actions + per-entry overrides
-- **Notes** and **auto-expiry** (minutes → months, or permanent)
-- **Party awareness** — warns you in chat and marks a listed player in the party list
-  and the Social window if one joins your party (incl. cross-world)
-- **Watch-only entries** — add someone with **no** effect checked to just *flag* them: they're
-  still shown in red and trigger the party warning, but nothing is hidden or filtered
-  (a community-requested feature)
-- **Safety first** — ignored players stay **visible in combat, duties and your party**,
-  so you never lose track of mechanics
-- **English & German UI**, follows your Dalamud language (switches live)
+- **Hide chat** from listed players, configurable per channel.
+- **Hide their Party Finder listings.**
+- **Hide their nameplates.**
+- **Hide the character model** (experimental, off by default).
+- **Categories** — Harassment, Spam, Spoiler, RMT, Misc — each with a default action you can
+  override for a single person.
+- **Notes and expiry.** Give an entry a note and a lifespan, from minutes to months, or make
+  it permanent.
+- **Party awareness.** If someone on your list joins your group, you get a heads-up in chat and
+  they're flagged in the party list and the Social window. Cross-world too.
+- **Watch-only entries.** Add someone with nothing ticked and they're just flagged: shown in
+  red, still triggering the party heads-up, but nothing hidden. (A community request.)
+- **Safe in instances.** Listed players are never hidden in combat, duties or your own party,
+  so you won't lose track of mechanics.
+- **Bilingual.** English and German, following your Dalamud language and switching live.
 
-## Not a competitor to Visibility
-XIVIgnore is **not** a competitor to, or a replacement for,
-[Visibility](https://github.com/SheepGoMeh/VisibilityPlugin) — and it makes **no claim** to be
-"better". They solve different problems:
+## How it compares to Visibility
+[Visibility](https://github.com/SheepGoMeh/VisibilityPlugin) and XIVIgnore aren't rivals; they
+do different jobs. Visibility works by group: hide party, friends, free company or the dead,
+plus pets and chocobos, and clean up your frame rate along the way (it also has a VoidList).
+XIVIgnore works the other way round, one named person at a time. Want group-based hiding, or
+pets and chocobos gone? That's Visibility's department, not this one.
 
-- **Visibility** declutters your view and helps performance — hide players, pets and chocobos
-  *by group* (party, friends, free company, dead), plus its VoidList. Huge respect to that project.
-- **XIVIgnore** is a *per-player* ignore/moderation tool — hide a specific person's chat,
-  Party Finder listings and nameplates (optionally their model), organised with categories,
-  notes and auto-expiry.
+If you run both, keep one thing in mind: they hide a character's model through the same game
+flag, so pointing both at the same person can make the model flicker. Let just one of them
+handle model-hiding for any given player.
 
-Want group-based hiding, or hiding pets/chocobos? Use **Visibility** — it does that well, and
-XIVIgnore intentionally doesn't try to.
+## Adding someone
+- Right-click them, choose *Add to virtual ignore list*, pick a duration.
+- Open the window with `/xivignore`.
+- Or `/xivignore add First Last@World`.
 
-**If you run both:** both plugins hide a character's *model* via the same game render flag, so
-telling *both* to hide the *same* player can cause flicker. For model-hiding, let just one
-plugin handle a given player. (XIVIgnore's model-hide is experimental and off by default.)
-
-## Adding players
-- **Right-click** a player → *Add to virtual ignore list* → pick a duration
-- The plugin window (`/xivignore`)
-- Slash command: `/xivignore add First Last@World`
-
-> **Tip:** By default, adding (right-click or command) first opens a **review window** — check
-> or adjust what will be ignored (filters, category, note, duration), then confirm to add it
-> or close it to add nothing. Prefer instant one-click adds? Turn this off under
-> **Settings → "Confirm before adding"**.
+By default, adding someone opens a quick review window first: check or tweak what's about to be
+ignored (filters, category, note, duration), then confirm, or close it to add nothing. Prefer
+one-click adds? Turn off "Confirm before adding" in the settings.
 
 ## Commands
-| Command | Action |
+| Command | What it does |
 |---|---|
 | `/xivignore` | Open the window |
 | `/xivignore add First Last@World` | Add a player |
@@ -62,31 +55,26 @@ plugin handle a given player. (XIVIgnore's model-hide is experimental and off by
 | `/xivignore list` | List entries |
 
 ## Installation
-1. In Dalamud: **Settings → Experimental → Custom Plugin Repositories**
+1. In Dalamud: Settings → Experimental → Custom Plugin Repositories.
 2. Add this URL:
    ```
    https://raw.githubusercontent.com/VelvetFFXIV/DalamudPlugins/main/pluginmaster.json
    ```
-3. **Save** → open the Plugin Installer → search **XIVIgnore** → **Install**
+3. Save, open the Plugin Installer, search for XIVIgnore, install.
 
-## Privacy & fair play
-- **No tracking IDs.** Listed players are keyed only by the public character **name + home world**
-  you already see — XIVIgnore stores **no ContentId** or any unique character/account identifier, and
-  cannot follow anyone across a name change or world transfer.
-- Your list is stored **locally** on your machine; nothing is sent anywhere.
-- Purely **client-side filtering** — it does not communicate with the game server, change the
-  real ignore list, or automate any gameplay.
-- Ignored players stay fully visible during combat/duty/party content.
+## Privacy
+The list stores only the character name and home world you already see in game. No ContentId,
+no hidden account identifier, so it can't follow anyone through a rename or a world transfer.
+It lives in a local file on your PC and never goes anywhere. Everything runs on your client:
+no contact with the game server, no touching the real ignore list, no automation of any kind.
 
 ## Known limitations
-- **Chat sound isn't filtered yet** — when a listed player's chat is hidden, the game still
-  plays the incoming-tell/whisper *sound*; only the text is suppressed. Clean per-player sound
-  suppression isn't currently possible, but it's on the radar.
+Hiding a player's chat doesn't silence the tell sound yet. The text is gone, but the game still
+plays the incoming-whisper sound. There's no clean way to mute it per player right now; I'd like
+to solve that down the line.
 
-## Source code
-XIVIgnore is **open source** under the **GNU AGPL-3.0** license — the full source lives in
-this repository. It's a purely client-side quality-of-life filter — it doesn't automate
-gameplay or communicate with the game server.
+## Source
+Open source under the GNU AGPL-3.0 license. All of it is in this repository.
 
 ## Support
-Found a bug or have a request? [Open an issue](https://github.com/VelvetFFXIV/XIVIgnore/issues).
+Found a bug, or want something added? [Open an issue.](https://github.com/VelvetFFXIV/XIVIgnore/issues)

@@ -2,61 +2,56 @@
 
 # XIVIgnore
 
-> Erweitert die Ignore-Liste virtuell — clientseitig, nur in deinem Client.
+> Eine größere Ignore-Liste für FFXIV, lokal auf deinem Rechner.
 
-Die echte Ignore-Liste von FFXIV ist klein und serverseitig. **XIVIgnore** führt deine
-eigene lokale „erweiterte Ignore-Liste" und filtert diese Spieler **in deinem Client**:
-Chat, Party-Finder-Einträge, Namensschilder oder sogar das Charaktermodell ausblenden —
-mit Kategorien, Notizen und automatischem Ablauf.
+Die eingebaute Ignore-Liste von FFXIV ist kurz und liegt auf dem Server. XIVIgnore führt
+lokal eine längere und filtert die Leute darauf still im Hintergrund: ihren Chat, ihre
+Party-Finder-Einträge, ihre Namensschilder und auf Wunsch ihr Charaktermodell. Einträge
+lassen sich in Kategorien sortieren, mit einer Notiz versehen und laufen von selbst wieder ab.
 
 ## Funktionen
-- **Chat ausblenden** von gelisteten Spielern (pro Kanal einstellbar)
-- **Party-Finder-Einträge ausblenden** von gelisteten Erstellern
-- **Namensschilder ausblenden** gelisteter Spieler
-- **Charaktermodell ausblenden** (experimentell, standardmäßig aus)
-- **Kategorien** (Belästigung, Spam, Spoiler, RMT, Sonstiges) mit Standard-Wirkung + Eintrag-Override
-- **Notizen** und **Auto-Ablauf** (Minuten → Monate, oder dauerhaft)
-- **Party-Hinweis** — warnt im Chat und markiert einen gelisteten Spieler in der Partyliste
-  und im Social-Fenster, wenn er in deine Gruppe kommt (auch Cross-World)
-- **Nur-Beobachten-Einträge** — jemanden **ohne** angehakte Wirkung hinzufügen, um ihn nur zu
-  *markieren*: weiterhin rot hervorgehoben + Party-Hinweis, aber nichts wird ausgeblendet oder
-  gefiltert (von der Community gewünscht)
-- **Sicherheit zuerst** — ignorierte Spieler bleiben **im Kampf, in Duties und in deiner
-  Gruppe sichtbar**, damit du Mechaniken nie aus den Augen verlierst
-- **Englische & deutsche UI**, folgt deiner Dalamud-Sprache (wechselt live)
+- **Chat ausblenden** von gelisteten Spielern, pro Kanal einstellbar.
+- **Party-Finder-Einträge ausblenden.**
+- **Namensschilder ausblenden.**
+- **Charaktermodell ausblenden** (experimentell, standardmäßig aus).
+- **Kategorien** — Belästigung, Spam, Spoiler, RMT, Sonstiges — jede mit einer Standard-Wirkung,
+  die du pro Person überschreiben kannst.
+- **Notizen und Ablauf.** Gib einem Eintrag eine Notiz und eine Laufzeit, von Minuten bis
+  Monaten, oder lass ihn dauerhaft stehen.
+- **Party-Hinweis.** Kommt jemand von deiner Liste in deine Gruppe, bekommst du eine Notiz im
+  Chat und die Person wird in der Partyliste und im Social-Fenster markiert. Auch Cross-World.
+- **Nur-Beobachten-Einträge.** Füge jemanden ohne angehakte Wirkung hinzu, dann ist er bloß
+  markiert: rot hervorgehoben, löst weiterhin den Party-Hinweis aus, aber nichts wird
+  ausgeblendet. (Von der Community gewünscht.)
+- **Sicher in Instanzen.** Gelistete Spieler werden im Kampf, in Duties und in deiner eigenen
+  Gruppe nie ausgeblendet, damit dir keine Mechanik abhandenkommt.
+- **Zweisprachig.** Deutsch und Englisch, folgt deiner Dalamud-Sprache und wechselt im
+  laufenden Betrieb.
 
-## Keine Konkurrenz zu Visibility
-XIVIgnore ist **kein** Konkurrent und **kein** Ersatz für
-[Visibility](https://github.com/SheepGoMeh/VisibilityPlugin) — und erhebt **nicht** den Anspruch,
-„besser" zu sein. Beide lösen unterschiedliche Probleme:
+## Wie es sich zu Visibility verhält
+[Visibility](https://github.com/SheepGoMeh/VisibilityPlugin) und XIVIgnore sind keine
+Konkurrenten; sie machen verschiedene Dinge. Visibility arbeitet gruppenweise: Party, Freunde,
+Free Company oder Tote ausblenden, dazu Pets und Chocobos, und nebenbei die Framerate entlasten
+(es hat außerdem eine VoidList). XIVIgnore geht den umgekehrten Weg, immer eine namentlich
+genannte Person. Du willst gruppenweises Ausblenden oder Pets und Chocobos loswerden? Das ist
+Visibilitys Revier, nicht dieses hier.
 
-- **Visibility** entrümpelt die Sicht und hilft der Performance — Spieler, Pets und Chocobos
-  *gruppenweise* ausblenden (Party, Freunde, Free Company, Tote), plus die VoidList. Großer
-  Respekt an das Projekt.
-- **XIVIgnore** ist ein *per-Spieler* Ignore-/Moderations-Tool — Chat, Party-Finder-Einträge und
-  Namensschilder einer bestimmten Person ausblenden (optional das Modell), mit Kategorien,
-  Notizen und Auto-Ablauf.
+Wenn du beide nutzt, denk an eines: Beide blenden ein Modell über dasselbe Spiel-Flag aus,
+dieselbe Person in beiden anzusteuern kann das Modell also flackern lassen. Lass fürs
+Modell-Ausblenden einfach eines von beiden den jeweiligen Spieler übernehmen.
 
-Du willst gruppenweises Ausblenden oder Pets/Chocobos verstecken? Dafür ist **Visibility** da —
-das macht es gut, und XIVIgnore versucht das bewusst gar nicht erst.
+## Jemanden hinzufügen
+- Rechtsklick auf die Person, *Zur virtuellen Ignore-Liste*, Dauer wählen.
+- Das Fenster mit `/xivignore` öffnen.
+- Oder `/xivignore add Vorname Nachname@Welt`.
 
-**Wenn du beide nutzt:** Beide blenden das *Modell* über dasselbe Render-Flag des Spiels aus —
-denselben Spieler in *beiden* auszublenden kann daher flackern. Lass fürs Modell-Ausblenden
-nur **ein** Plugin den jeweiligen Spieler übernehmen. (XIVIgnores Modell-Ausblenden ist
-experimentell und standardmäßig aus.)
-
-## Spieler hinzufügen
-- **Rechtsklick** auf einen Spieler → *Zur virtuellen Ignore-Liste* → Dauer wählen
-- Das Plugin-Fenster (`/xivignore`)
-- Slash-Befehl: `/xivignore add Vorname Nachname@Welt`
-
-> **Hinweis:** Standardmäßig öffnet das Hinzufügen (Rechtsklick oder Befehl) zuerst ein
-> **Prüf-Fenster** — kontrolliere oder ändere, was ignoriert wird (Wirkung, Kategorie, Notiz,
-> Dauer) und bestätige es zum Hinzufügen oder schließe es, ohne etwas hinzuzufügen. Lieber sofort
-> mit einem Klick? Schalte das unter **Einstellungen → „Vor dem Hinzufügen bestätigen"** ab.
+Standardmäßig öffnet sich beim Hinzufügen erst ein kurzes Prüf-Fenster: schau dir an, was gleich
+ignoriert wird (Wirkung, Kategorie, Notiz, Dauer), und bestätige es, oder schließ es, ohne etwas
+hinzuzufügen. Lieber mit einem Klick? Schalte „Vor dem Hinzufügen bestätigen" in den
+Einstellungen ab.
 
 ## Befehle
-| Befehl | Aktion |
+| Befehl | Wirkung |
 |---|---|
 | `/xivignore` | Fenster öffnen |
 | `/xivignore add Vorname Nachname@Welt` | Spieler hinzufügen |
@@ -64,33 +59,27 @@ experimentell und standardmäßig aus.)
 | `/xivignore list` | Einträge auflisten |
 
 ## Installation
-1. In Dalamud: **Einstellungen → Experimentell → Custom Plugin Repositories**
+1. In Dalamud: Einstellungen → Experimentell → Custom Plugin Repositories.
 2. Diese URL hinzufügen:
    ```
    https://raw.githubusercontent.com/VelvetFFXIV/DalamudPlugins/main/pluginmaster.json
    ```
-3. **Speichern** → Plugin-Installer öffnen → **XIVIgnore** suchen → **Installieren**
+3. Speichern, Plugin-Installer öffnen, nach XIVIgnore suchen, installieren.
 
-## Datenschutz & Fair Play
-- **Keine Tracking-IDs.** Gelistete Spieler werden nur über den öffentlichen **Charakternamen +
-  die Heimatwelt** geführt, die du ohnehin siehst — XIVIgnore speichert **keine ContentId** und
-  keinen eindeutigen Charakter-/Account-Identifier und kann niemandem über Namensänderung oder
-  Welttransfer folgen.
-- Deine Liste liegt **lokal** auf deinem Rechner; nichts wird irgendwohin gesendet.
-- Reines **clientseitiges Filtern** — es kommuniziert nicht mit dem Spielserver, ändert nicht
-  die echte Ignore-Liste und automatisiert nichts.
-- Ignorierte Spieler bleiben in Kampf-/Duty-/Gruppen-Inhalten voll sichtbar.
+## Datenschutz
+Die Liste speichert nur den Charakternamen und die Heimatwelt, die du im Spiel ohnehin siehst.
+Keine ContentId, kein verstecktes Account-Kennzeichen, also kann sie niemandem über eine
+Namensänderung oder einen Welttransfer folgen. Sie liegt in einer lokalen Datei auf deinem PC
+und verlässt ihn nie. Alles läuft auf deinem Client: kein Kontakt zum Spielserver, kein Eingriff
+in die echte Ignore-Liste, keinerlei Automatisierung.
 
 ## Bekannte Einschränkungen
-- **Chat-Sound wird noch nicht gefiltert** — wenn der Chat eines gelisteten Spielers
-  ausgeblendet wird, spielt das Spiel den Tell-/Wisper-*Sound* trotzdem; nur der Text wird
-  unterdrückt. Eine saubere Stummschaltung pro Spieler ist derzeit nicht möglich, wir haben es
-  aber auf dem Schirm.
+Wer den Chat einer gelisteten Person ausblendet, hört trotzdem noch den Tell-Sound. Der Text ist
+weg, aber das Spiel spielt den Wisper-Ton weiterhin ab. Sauber pro Person stummschalten lässt
+sich das aktuell nicht; ich würde das gern noch lösen.
 
 ## Quellcode
-XIVIgnore ist **Open Source** unter der **GNU AGPL-3.0**-Lizenz — der vollständige Quellcode
-liegt in diesem Repository. Es ist ein rein clientseitiger Komfort-Filter — es automatisiert
-nichts und kommuniziert nicht mit dem Spielserver.
+Open Source unter der GNU AGPL-3.0-Lizenz. Alles liegt in diesem Repository.
 
 ## Support
-Bug gefunden oder einen Wunsch? [Mach ein Issue auf](https://github.com/VelvetFFXIV/XIVIgnore/issues).
+Bug gefunden oder einen Wunsch? [Mach ein Issue auf.](https://github.com/VelvetFFXIV/XIVIgnore/issues)
