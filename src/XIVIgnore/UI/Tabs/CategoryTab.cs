@@ -43,6 +43,14 @@ public sealed class CategoryTab
             ImGui.PopStyleColor();
         }
 
+        // Same for Nameplate.
+        if (!_config.NameplateFilterEnabled)
+        {
+            ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.82f, 0.25f, 1f));
+            ImGui.TextWrapped(_loc.Get("edit.nameplateOff"));
+            ImGui.PopStyleColor();
+        }
+
         Guid? toRemove = null;
         foreach (var c in _store.Categories.ToList())
         {
@@ -87,12 +95,14 @@ public sealed class CategoryTab
         }
     }
 
-    // Nameplate is locked + forced as long as Character (CharacterHide) is set.
+    // Nameplate is locked + forced as long as Character (CharacterHide) is set, and disabled
+    // while the global Nameplate switch is off.
     private void DrawNameplateFlag(string label, IgnoreCategory c)
     {
         var charOn = c.DefaultActions.HasFlag(FilterAction.CharacterHide);
+        var locked = charOn || !_config.NameplateFilterEnabled;
         var on = charOn || c.DefaultActions.HasFlag(FilterAction.Nameplate);
-        if (charOn)
+        if (locked)
         {
             ImGui.BeginDisabled(true);
         }
@@ -103,7 +113,7 @@ public sealed class CategoryTab
                                   : c.DefaultActions & ~FilterAction.Nameplate;
             _store.AddOrUpdateCategory(c);
         }
-        if (charOn)
+        if (locked)
         {
             ImGui.EndDisabled();
         }
