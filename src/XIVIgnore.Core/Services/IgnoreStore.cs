@@ -116,6 +116,29 @@ public sealed class IgnoreStore
         }
     }
 
+    /// <summary>
+    /// Removes the Character effect from every entry override (Nameplate stays). Category defaults are
+    /// left untouched — they simply have no effect while the global switch is off. Called when it is turned off.
+    /// </summary>
+    public void StripCharacterHide()
+    {
+        var changed = false;
+
+        foreach (var e in _data.Entries)
+        {
+            if (e.ActionsOverride is { } ov && ov.HasFlag(FilterAction.CharacterHide))
+            {
+                e.ActionsOverride = ov & ~FilterAction.CharacterHide;
+                changed = true;
+            }
+        }
+
+        if (changed)
+        {
+            SaveAndNotify();
+        }
+    }
+
     public IgnoreCategory? FindCategory(Guid? id)
         => id is null ? null : _data.Categories.FirstOrDefault(c => c.Id == id);
 

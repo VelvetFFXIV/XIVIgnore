@@ -50,6 +50,31 @@ public class IgnoreStoreTests : IDisposable
     }
 
     [Fact]
+    public void StripCharacterHide_clears_entry_overrides_only_and_leaves_categories()
+    {
+        var store = NewStore();
+        store.AddOrUpdateCategory(new IgnoreCategory
+        {
+            Name = "Cat",
+            DefaultActions = FilterAction.Nameplate | FilterAction.CharacterHide,
+        });
+        store.AddOrUpdateEntry(new IgnoreEntry
+        {
+            Name = "Foo Bar",
+            WorldId = 73,
+            ActionsOverride = FilterAction.Chat | FilterAction.Nameplate | FilterAction.CharacterHide,
+        });
+
+        store.StripCharacterHide();
+
+        var reloaded = NewStore();
+        var ov = reloaded.Entries[0].ActionsOverride!.Value;
+        Assert.False(ov.HasFlag(FilterAction.CharacterHide)); // entry override loses it
+        Assert.True(ov.HasFlag(FilterAction.Nameplate));      // other effects stay
+        Assert.True(reloaded.Categories[0].DefaultActions.HasFlag(FilterAction.CharacterHide)); // category unchanged
+    }
+
+    [Fact]
     public void RemoveEntry_removes_and_persists()
     {
         var store = NewStore();
