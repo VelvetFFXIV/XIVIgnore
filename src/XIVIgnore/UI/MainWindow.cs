@@ -42,7 +42,7 @@ public sealed class MainWindow : Window
         };
         _listTab = new ListTab(store, worlds, config, loc, openAddDialog, openBlacklistImport);
         _categoryTab = new CategoryTab(store, loc, config);
-        _settingsTab = new SettingsTab(config, loc);
+        _settingsTab = new SettingsTab(store, config, loc);
     }
 
     /// <summary>Opens/closes the window (Dalamud "Open" + /xivignore with no argument); always the list tab on open.</summary>

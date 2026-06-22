@@ -4,6 +4,7 @@
 using Dalamud.Bindings.ImGui;
 using Dalamud.Game.Text;
 using XIVIgnore.Core.Localization;
+using XIVIgnore.Core.Services;
 
 namespace XIVIgnore.UI.Tabs;
 
@@ -20,11 +21,13 @@ public sealed class SettingsTab
         XivChatType.CrossLinkShell7, XivChatType.CrossLinkShell8,
     };
 
+    private readonly IgnoreStore _store;
     private readonly Configuration _config;
     private readonly Localizer _loc;
 
-    public SettingsTab(Configuration config, Localizer loc)
+    public SettingsTab(IgnoreStore store, Configuration config, Localizer loc)
     {
+        _store = store;
         _config = config;
         _loc = loc;
     }
@@ -43,7 +46,16 @@ public sealed class SettingsTab
         if (ImGui.Checkbox(_loc.Get("settings.nameplate"), ref npOn)) { _config.NameplateFilterEnabled = npOn; changed = true; }
 
         var chOn = _config.CharacterHideFilterEnabled;
-        if (ImGui.Checkbox(_loc.Get("settings.charHide"), ref chOn)) { _config.CharacterHideFilterEnabled = chOn; changed = true; }
+        if (ImGui.Checkbox(_loc.Get("settings.charHide"), ref chOn))
+        {
+            _config.CharacterHideFilterEnabled = chOn;
+            changed = true;
+            if (!chOn)
+            {
+                // Turning the feature off drops the Character effect from all entries + categories.
+                _store.StripCharacterHide();
+            }
+        }
         if (ImGui.IsItemHovered())
         {
             ImGui.SetTooltip(_loc.Get("settings.charHideHint"));

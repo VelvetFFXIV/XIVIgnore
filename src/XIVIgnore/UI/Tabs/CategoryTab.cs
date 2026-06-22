@@ -35,6 +35,14 @@ public sealed class CategoryTab
         }
         ImGui.Separator();
 
+        // Character is only selectable while the global switch is on; one hint for the whole list.
+        if (!_config.CharacterHideFilterEnabled)
+        {
+            ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.82f, 0.25f, 1f));
+            ImGui.TextWrapped(_loc.Get("edit.charHideOff"));
+            ImGui.PopStyleColor();
+        }
+
         Guid? toRemove = null;
         foreach (var c in _store.Categories.ToList())
         {
@@ -58,14 +66,6 @@ public sealed class CategoryTab
             if (ImGui.SmallButton(_loc.Get("common.delete")))
             {
                 toRemove = c.Id;
-            }
-
-            // "Hide character" only takes hold with the global (experimental) switch in the settings.
-            if (c.DefaultActions.HasFlag(FilterAction.CharacterHide) && !_config.CharacterHideFilterEnabled)
-            {
-                ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.82f, 0.25f, 1f));
-                ImGui.TextWrapped(_loc.Get("edit.charHideOff"));
-                ImGui.PopStyleColor();
             }
 
             ImGui.Separator();
@@ -110,15 +110,26 @@ public sealed class CategoryTab
     }
 
     // Character implies Nameplate: set Nameplate along with it when enabling.
+    // Disabled while the global switch is off.
     private void DrawCharacterFlag(string label, IgnoreCategory c)
     {
+        var allowed = _config.CharacterHideFilterEnabled;
         var on = c.DefaultActions.HasFlag(FilterAction.CharacterHide);
+        if (!allowed)
+        {
+            ImGui.BeginDisabled(true);
+        }
+
         if (ImGui.Checkbox(label, ref on))
         {
             c.DefaultActions = on
                 ? FilterActionRules.WithImpliedNameplate(c.DefaultActions | FilterAction.CharacterHide)
                 : c.DefaultActions & ~FilterAction.CharacterHide;
             _store.AddOrUpdateCategory(c);
+        }
+        if (!allowed)
+        {
+            ImGui.EndDisabled();
         }
     }
 }
