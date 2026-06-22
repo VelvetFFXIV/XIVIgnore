@@ -51,6 +51,14 @@ public sealed class CategoryTab
             ImGui.PopStyleColor();
         }
 
+        // Same for Party Finder.
+        if (!_config.PartyFinderFilterEnabled)
+        {
+            ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.82f, 0.25f, 1f));
+            ImGui.TextWrapped(_loc.Get("edit.pfOff"));
+            ImGui.PopStyleColor();
+        }
+
         Guid? toRemove = null;
         foreach (var c in _store.Categories.ToList())
         {
@@ -66,7 +74,7 @@ public sealed class CategoryTab
 
             ImGui.TextUnformatted(_loc.Get("cat.defaultEffect"));
             DrawActionFlag(_loc.Get("common.chat"), c, FilterAction.Chat);
-            ImGui.SameLine(); DrawActionFlag(_loc.Get("common.partyFinder"), c, FilterAction.PartyFinder);
+            ImGui.SameLine(); DrawActionFlag(_loc.Get("common.partyFinder"), c, FilterAction.PartyFinder, _config.PartyFinderFilterEnabled);
             ImGui.SameLine(); DrawNameplateFlag(_loc.Get("common.nameplate"), c);
             ImGui.SameLine(); DrawCharacterFlag(_loc.Get("common.character"), c);
 
@@ -85,13 +93,23 @@ public sealed class CategoryTab
         }
     }
 
-    private void DrawActionFlag(string label, IgnoreCategory c, FilterAction flag)
+    // Optional gating: a flag whose global switch is off is shown disabled.
+    private void DrawActionFlag(string label, IgnoreCategory c, FilterAction flag, bool allowed = true)
     {
+        if (!allowed)
+        {
+            ImGui.BeginDisabled(true);
+        }
+
         var on = c.DefaultActions.HasFlag(flag);
         if (ImGui.Checkbox(label, ref on))
         {
             c.DefaultActions = on ? c.DefaultActions | flag : c.DefaultActions & ~flag;
             _store.AddOrUpdateCategory(c);
+        }
+        if (!allowed)
+        {
+            ImGui.EndDisabled();
         }
     }
 

@@ -4,6 +4,9 @@ Newest on top.
 
 ## [Unreleased]
 
+## [v0.0.0.243] - 2026-06-22
+- "Party Finder" can now only be selected while the global switch is on.
+
 ## [v0.0.0.241] - 2026-06-22
 - "Hide nameplate" can now only be selected while the global switch is on.
 
