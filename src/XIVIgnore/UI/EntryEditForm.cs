@@ -146,8 +146,9 @@ public sealed class EntryEditForm
         ImGui.TextUnformatted(_loc.Get("edit.effectOverride"));
         ImGui.Checkbox(_loc.Get("edit.useCategoryDefault") + "##editUseCategory", ref _useCategory);
 
-        // Character is only selectable while the global switch in the settings is on.
+        // Character and Nameplate are each only selectable while their global switch in the settings is on.
         var charHideAllowed = _config.CharacterHideFilterEnabled;
+        var nameplateAllowed = _config.NameplateFilterEnabled;
 
         // Character implies Nameplate: while Character is on, Nameplate is forced + locked
         // (the nameplate is tied to the character model).
@@ -167,13 +168,13 @@ public sealed class EntryEditForm
         ImGui.SameLine();
         ImGui.Checkbox(_loc.Get("common.partyFinder") + "##editPF", ref _partyFinder);
         ImGui.SameLine();
-        if (npLocked)
+        if (npLocked || !nameplateAllowed)
         {
             ImGui.BeginDisabled(true);
         }
 
         ImGui.Checkbox(_loc.Get("common.nameplate") + "##editNP", ref _nameplate);
-        if (npLocked)
+        if (npLocked || !nameplateAllowed)
         {
             ImGui.EndDisabled();
         }
@@ -200,6 +201,13 @@ public sealed class EntryEditForm
         {
             ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.82f, 0.25f, 1f));
             ImGui.TextWrapped(_loc.Get("edit.charHideOff"));
+            ImGui.PopStyleColor();
+        }
+
+        if (!nameplateAllowed)
+        {
+            ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.82f, 0.25f, 1f));
+            ImGui.TextWrapped(_loc.Get("edit.nameplateOff"));
             ImGui.PopStyleColor();
         }
 
