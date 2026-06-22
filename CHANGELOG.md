@@ -1,8 +1,6 @@
 # Changelog
 
-> One short, user-facing note per version — newest on top.
-> Collect changes under `## [Unreleased]`; the release script rolls that block into the
-> version on publish (and feeds it to the Dalamud installer + the GitHub release notes).
+Newest on top.
 
 ## [Unreleased]
 
