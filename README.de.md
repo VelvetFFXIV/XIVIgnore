@@ -72,6 +72,10 @@ experimentell und standardmäßig aus.)
 3. **Speichern** → Plugin-Installer öffnen → **XIVIgnore** suchen → **Installieren**
 
 ## Datenschutz & Fair Play
+- **Keine Tracking-IDs.** Gelistete Spieler werden nur über den öffentlichen **Charakternamen +
+  die Heimatwelt** geführt, die du ohnehin siehst — XIVIgnore speichert **keine ContentId** und
+  keinen eindeutigen Charakter-/Account-Identifier und kann niemandem über Namensänderung oder
+  Welttransfer folgen.
 - Deine Liste liegt **lokal** auf deinem Rechner; nichts wird irgendwohin gesendet.
 - Reines **clientseitiges Filtern** — es kommuniziert nicht mit dem Spielserver, ändert nicht
   die echte Ignore-Liste und automatisiert nichts.
@@ -84,8 +88,8 @@ experimentell und standardmäßig aus.)
   aber auf dem Schirm.
 
 ## Quellcode
-Aktuell nicht öffentlich — eine Open-Source-Veröffentlichung ist aber geplant, sobald es
-ausgereift ist. XIVIgnore ist ein rein clientseitiger Komfort-Filter — es automatisiert
+XIVIgnore ist **Open Source** unter der **GNU AGPL-3.0**-Lizenz — der vollständige Quellcode
+liegt in diesem Repository. Es ist ein rein clientseitiger Komfort-Filter — es automatisiert
 nichts und kommuniziert nicht mit dem Spielserver.
 
 ## Support

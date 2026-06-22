@@ -1,0 +1,130 @@
+# .editorconfig – the authoritative style source for C#/.NET; `dotnet format` follows it exactly.
+root = true
+
+# ----- All files -----
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+
+# ----- C# -----
+[*.cs]
+indent_size = 4
+max_line_length = 120
+
+# Using directives
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = false
+csharp_using_directive_placement = outside_namespace:warning
+
+# file-scoped namespaces (less indentation)
+csharp_style_namespace_declarations = file_scoped:warning
+
+# var usage: yes when the type is apparent
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_for_built_in_types = false:suggestion
+csharp_style_var_elsewhere = false:suggestion
+
+# Braces & style
+csharp_prefer_braces = true:warning
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+
+# Always make accessibility modifiers explicit
+dotnet_style_require_accessibility_modifiers = always:warning
+
+# don't force this.
+dotnet_style_qualification_for_field = false:warning
+dotnet_style_qualification_for_property = false:warning
+dotnet_style_qualification_for_method = false:warning
+
+# prefer modern language features
+dotnet_style_object_initializer = true:suggestion
+dotnet_style_collection_initializer = true:suggestion
+csharp_style_expression_bodied_methods = false:silent
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+csharp_style_prefer_switch_expression = true:suggestion
+
+# Style rules hard as errors (apply in CI too via EnforceCodeStyleInBuild):
+dotnet_diagnostic.IDE0005.severity = error   # unnecessary usings
+dotnet_diagnostic.IDE0055.severity = error   # formatting
+dotnet_diagnostic.IDE0040.severity = error   # accessibility modifier required
+
+# Tune individual code-quality rules (global activation via props):
+dotnet_diagnostic.CA2007.severity = none     # ConfigureAwait – unnecessary in apps
+dotnet_diagnostic.CA1062.severity = warning  # null-check public args
+dotnet_diagnostic.CA1031.severity = none     # catch(Exception) on purpose: crash safety around game access
+# Patterns atypical for a library but deliberate here (the plugin is an app, not a library):
+dotnet_diagnostic.CA1308.severity = none     # ToLowerInvariant on purpose: comparison/dedup keys are lowercase (ASCII names)
+dotnet_diagnostic.CA1716.severity = none     # reserved words (cross-language) irrelevant for a C#-only plugin
+dotnet_diagnostic.CA1002.severity = none     # List<T> in the internal data model is fine (no public library API)
+dotnet_diagnostic.CA1051.severity = none     # public fields on purpose (ImGui binds checkboxes to the field by ref)
+dotnet_diagnostic.CA1724.severity = none     # type name == namespace on purpose (e.g. Core)
+dotnet_diagnostic.CA1024.severity = none     # Get methods on purpose (e.g. GetRect returns a tuple)
+dotnet_diagnostic.CA2227.severity = none     # settable collections required for System.Text.Json (de)serialization
+
+# ----- Naming: interfaces with I prefix -----
+dotnet_naming_rule.interfaces_should_be_prefixed_with_i.severity = warning
+dotnet_naming_rule.interfaces_should_be_prefixed_with_i.symbols = interface_symbol
+dotnet_naming_rule.interfaces_should_be_prefixed_with_i.style = i_prefix_pascal
+dotnet_naming_symbols.interface_symbol.applicable_kinds = interface
+dotnet_naming_style.i_prefix_pascal.required_prefix = I
+dotnet_naming_style.i_prefix_pascal.capitalization = pascal_case
+
+# private fields: _camelCase
+dotnet_naming_rule.private_fields_camel.severity = suggestion
+dotnet_naming_rule.private_fields_camel.symbols = private_field_symbol
+dotnet_naming_rule.private_fields_camel.style = underscore_camel
+dotnet_naming_symbols.private_field_symbol.applicable_kinds = field
+dotnet_naming_symbols.private_field_symbol.applicable_accessibilities = private
+dotnet_naming_style.underscore_camel.required_prefix = _
+dotnet_naming_style.underscore_camel.capitalization = camel_case
+
+# ----- JSON / YAML / project files -----
+[*.{json,yml,yaml}]
+indent_size = 2
+
+[*.{csproj,props,targets}]
+indent_size = 2
+
+# ============================================================================
+# CODE QUALITY (CA rules) – activation & exceptions.
+# ============================================================================
+# Interplay with Directory.Build.props (IMPORTANT):
+#   It sets <AnalysisMode>AllEnabledByDefault</AnalysisMode> and
+#   <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>.
+#   - EnforceCodeStyleInBuild: IDE style rules apply during `dotnet build`/CI too.
+#   - AnalysisMode=AllEnabledByDefault: enables the CA quality rules globally.
+#   - PITFALL: when AnalysisMode is set via MSBuild, BULK severity lines
+#     (dotnet_analyzer_diagnostic.severity = ...) are IGNORED for *.cs.
+#     So above we tune only INDIVIDUAL rules via dotnet_diagnostic.<ID>,
+#     not via bulk. Strictness (as errors) comes from the props, not from here.
+#
+# If you don't use AllEnabledByDefault in the props, you can bulk-enable a
+# category here, e.g.:  dotnet_analyzer_diagnostic.category-Security.severity = error
+
+# ----- Exception 1: generated code (not our code -> don't analyze) -----
+# Microsoft's analyzers skip most generated code automatically (the
+# <auto-generated> header or *.Designer.cs). This section is the safety net
+# for cases without such a header.
+[*.{Designer.cs,g.cs,g.i.cs}]
+generated_code = true
+dotnet_analyzer_diagnostic.severity = none
+
+# ----- Exception 2: test projects (xUnit conventions, not shipping code) -----
+# Everything under tests/ — glob is deliberately repo-specific (the generic
+# *{Test,Tests} glob didn't match reliably here).
+[tests/**.cs]
+dotnet_diagnostic.CA1707.severity = none     # underscores in test method names (idiomatic)
+dotnet_diagnostic.CA1062.severity = none     # null checks unnecessary in tests
+dotnet_diagnostic.CA2007.severity = none     # ConfigureAwait unnecessary in tests
+dotnet_diagnostic.CA2000.severity = none     # Dispose not critical in tests
+dotnet_diagnostic.CA1515.severity = none     # test classes MUST be public (xUnit) – don't require internal
+dotnet_diagnostic.CA1812.severity = none     # xUnit instantiates test classes via reflection
+dotnet_diagnostic.CA1852.severity = none     # don't force sealing test classes
+dotnet_diagnostic.CA1063.severity = none     # full dispose pattern unnecessary in test classes
+dotnet_diagnostic.CA1816.severity = none     # GC.SuppressFinalize unnecessary in test classes

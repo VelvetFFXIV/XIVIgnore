@@ -1,0 +1,8 @@
+{
+  "Name": "XIVIgnore",
+  "Author": "VelvetFFXIV",
+  "Punchline": "Virtually extends the in-game ignore list (client-side).",
+  "Description": "Client-side virtual extension of the FFXIV ignore list: additionally mute and hide players, with categories, notes and auto-expiry. UI available in English and German.",
+  "RepoUrl": "https://github.com/VelvetFFXIV/XIVIgnore",
+  "Tags": ["chat", "ignore", "blacklist", "quality-of-life"]
+}
