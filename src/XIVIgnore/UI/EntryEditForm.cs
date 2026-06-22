@@ -146,7 +146,8 @@ public sealed class EntryEditForm
         ImGui.TextUnformatted(_loc.Get("edit.effectOverride"));
         ImGui.Checkbox(_loc.Get("edit.useCategoryDefault") + "##editUseCategory", ref _useCategory);
 
-        // Character and Nameplate are each only selectable while their global switch in the settings is on.
+        // Party Finder, Nameplate and Character are each only selectable while their global switch in the settings is on.
+        var partyFinderAllowed = _config.PartyFinderFilterEnabled;
         var charHideAllowed = _config.CharacterHideFilterEnabled;
         var nameplateAllowed = _config.NameplateFilterEnabled;
 
@@ -166,7 +167,17 @@ public sealed class EntryEditForm
 
         ImGui.Checkbox(_loc.Get("common.chat") + "##editChat", ref _chat);
         ImGui.SameLine();
+        if (!partyFinderAllowed)
+        {
+            ImGui.BeginDisabled(true);
+        }
+
         ImGui.Checkbox(_loc.Get("common.partyFinder") + "##editPF", ref _partyFinder);
+        if (!partyFinderAllowed)
+        {
+            ImGui.EndDisabled();
+        }
+
         ImGui.SameLine();
         if (npLocked || !nameplateAllowed)
         {
@@ -197,6 +208,13 @@ public sealed class EntryEditForm
         }
 
         // Switch off: the box above is disabled — point the user to the setting.
+        if (!partyFinderAllowed)
+        {
+            ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.82f, 0.25f, 1f));
+            ImGui.TextWrapped(_loc.Get("edit.pfOff"));
+            ImGui.PopStyleColor();
+        }
+
         if (!charHideAllowed)
         {
             ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.82f, 0.25f, 1f));
