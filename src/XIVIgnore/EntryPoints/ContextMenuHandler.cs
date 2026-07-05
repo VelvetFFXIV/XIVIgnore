@@ -129,6 +129,15 @@ public sealed class ContextMenuHandler : IDisposable
                 return;
             }
 
+            // Players you've blocked in-game are rendered under a masked placeholder ("Unknown 01",
+            // localized per client language) wherever the game has to show them. A real FFXIV name
+            // never contains a digit, so a digit here means it's that mask: the name isn't the real
+            // one and they're already blocked, so adding them to the virtual list makes no sense.
+            if (name.Any(char.IsDigit))
+            {
+                return;
+            }
+
             var contextActions = GetContextActions(addonName);
 
             args.AddMenuItem(new MenuItem

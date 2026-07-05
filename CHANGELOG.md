@@ -3,6 +3,7 @@
 Newest on top.
 
 ## [Unreleased]
+- The right-click add option is hidden for players the game has blocked (shown as "Unknown").
 
 ## [v0.0.0.243] - 2026-06-22
 - "Party Finder" can now only be selected while the global switch is on.
