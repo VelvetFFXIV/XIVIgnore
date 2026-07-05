@@ -108,6 +108,10 @@ public sealed class SettingsTab
         if (ImGui.Checkbox(_loc.Get("settings.socialMarker"), ref spm))
         { _config.SocialMarkerEnabled = spm; changed = true; }
 
+        var mbp = _config.MarkBlockedPlayers;
+        if (ImGui.Checkbox(_loc.Get("settings.markBlocked"), ref mbp))
+        { _config.MarkBlockedPlayers = mbp; changed = true; }
+
         ImGui.Separator();
         var confirmAdd = _config.ConfirmBeforeAdd;
         if (ImGui.Checkbox(_loc.Get("settings.confirmBeforeAdd"), ref confirmAdd))

@@ -42,6 +42,7 @@
   "settings.partyAwareness": "Notify about ignored party members",
   "settings.partyListMarker": "Mark ignored in party list",
   "settings.socialMarker": "Mark ignored in social window (experimental)",
+  "settings.markBlocked": "Mark blocked players red in party lists",
   "settings.autoPruneHint": "Expired entries are removed automatically (checked every 30 s).",
   "settings.confirmBeforeAdd": "Confirm before adding",
   "settings.confirmBeforeAddHint": "When adding via context menu or command, first open a window to review/edit the entry.",

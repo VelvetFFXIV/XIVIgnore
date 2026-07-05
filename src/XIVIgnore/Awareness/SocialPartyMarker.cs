@@ -61,7 +61,7 @@ public sealed unsafe class SocialPartyMarker : IDisposable
     {
         try
         {
-            if (!_config.SocialMarkerEnabled && _originalColors.Count == 0)
+            if (!_config.SocialMarkerEnabled && !_config.MarkBlockedPlayers && _originalColors.Count == 0)
             {
                 return;
             }
@@ -132,8 +132,9 @@ public sealed unsafe class SocialPartyMarker : IDisposable
                     continue;
                 }
 
-                bool wantRed = ignoredNames != null &&
-                               ignoredNames.Contains(NormalizeHudName(tn->NodeText.ToString()));
+                var norm = NormalizeHudName(tn->NodeText.ToString());
+                bool wantRed = (ignoredNames != null && ignoredNames.Contains(norm))
+                               || (_config.MarkBlockedPlayers && IsMaskedBlockedName(norm));
 
                 if (wantRed)
                 {
@@ -257,6 +258,12 @@ public sealed unsafe class SocialPartyMarker : IDisposable
 
         return (start < s.Length ? s[start..] : s).ToLowerInvariant();
     }
+
+    // A blocked player is shown under a masked placeholder ("Unknown 01"). Real names never carry a
+    // digit, and pure-number nodes (levels, "7/8") never carry a letter — so a text with BOTH a
+    // letter and a digit is that mask, not a level and not a real name.
+    private static bool IsMaskedBlockedName(string normalized)
+        => normalized.Length > 0 && normalized.Any(char.IsLetter) && normalized.Any(char.IsDigit);
 
     private static void AddNameVariants(HashSet<string> set, string full)
     {

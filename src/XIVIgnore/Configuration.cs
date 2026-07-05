@@ -32,6 +32,10 @@ public sealed class Configuration : IPluginConfiguration
 
     public bool SocialMarkerEnabled { get; set; } = true; // experimental
 
+    // Highlight players blocked in-game (shown masked as "Unknown") red in the party lists.
+    // Default ON; independent of the two marker switches above.
+    public bool MarkBlockedPlayers { get; set; } = true;
+
     // Open a review/edit window before adding (context menu/command).
     // Default ON; in old configs lacking this field ⇒ true (new players get the dialog).
     public bool ConfirmBeforeAdd { get; set; } = true;

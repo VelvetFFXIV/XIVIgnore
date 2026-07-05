@@ -39,6 +39,10 @@ public sealed unsafe class PartyListMarker : IDisposable
     // Which slots are currently ignored (recomputed on a throttle).
     private readonly HashSet<int> _ignoredSlots = new();
     private DateTimeOffset _lastRebuild = DateTimeOffset.MinValue;
+#if DEBUG
+    // Dev-only diagnostic: last logged slot-name line, so identical lines aren't spammed.
+    private string _lastDebugLine = string.Empty;
+#endif
 
     public PartyListMarker(IAddonLifecycle addonLifecycle, IPartyList party,
                            PlayerMatcher matcher, Configuration config, IPluginLog log)
@@ -67,14 +71,19 @@ public sealed unsafe class PartyListMarker : IDisposable
             int slots = Math.Clamp(addon->MemberCount, 0, 8);
 
             // Throttled: which slots are ignored? (Reading text + matching is the costlier part.)
+            var markVirtual = _config.PartyListMarkerEnabled;
+            var markBlocked = _config.MarkBlockedPlayers;
             var now = DateTimeOffset.UtcNow;
             if ((now - _lastRebuild).TotalMilliseconds >= 200)
             {
                 _lastRebuild = now;
                 _ignoredSlots.Clear();
-                if (_config.PartyListMarkerEnabled)
+                if (markVirtual || markBlocked)
                 {
-                    var ignored = BuildIgnoredNameSet();
+                    var ignored = markVirtual ? BuildIgnoredNameSet() : null;
+#if DEBUG
+                    var dbg = new System.Text.StringBuilder("[XIVIgnore] _PartyList names: ");
+#endif
                     for (int i = 0; i < slots; i++)
                     {
                         var node = addon->PartyMembers[i].Name;
@@ -83,12 +92,38 @@ public sealed unsafe class PartyListMarker : IDisposable
                             continue;
                         }
 
-                        var key = NormalizeHudName(node->NodeText.ToString());
-                        if (key.Length > 0 && ignored.Contains(key))
+                        var shown = node->NodeText.ToString();
+#if DEBUG
+                        dbg.Append('[').Append(i.ToString(System.Globalization.CultureInfo.InvariantCulture))
+                            .Append("]='").Append(shown).Append("' ");
+#endif
+
+                        // Players you've blocked in-game show up under a masked placeholder
+                        // ("Unknown 01") that always carries a digit — real names never do. Flag those
+                        // slots when blocked-marking is on, so a blocked member reads red too.
+                        if (markBlocked && shown.Any(char.IsDigit))
                         {
                             _ignoredSlots.Add(i);
+                            continue;
+                        }
+
+                        if (ignored != null)
+                        {
+                            var key = NormalizeHudName(shown);
+                            if (key.Length > 0 && ignored.Contains(key))
+                            {
+                                _ignoredSlots.Add(i);
+                            }
                         }
                     }
+#if DEBUG
+                    var dbgLine = dbg.ToString();
+                    if (dbgLine != _lastDebugLine)
+                    {
+                        _lastDebugLine = dbgLine;
+                        _log.Information(dbgLine);
+                    }
+#endif
                 }
             }
 
@@ -101,7 +136,7 @@ public sealed unsafe class PartyListMarker : IDisposable
                     continue;
                 }
 
-                bool wantRed = _config.PartyListMarkerEnabled && _ignoredSlots.Contains(i);
+                bool wantRed = (markVirtual || markBlocked) && _ignoredSlots.Contains(i);
                 if (wantRed)
                 {
                     if (!_marked[i]) { _origColor[i] = node->TextColor; _marked[i] = true; }
