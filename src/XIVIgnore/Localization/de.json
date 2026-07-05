@@ -42,6 +42,7 @@
   "settings.partyAwareness": "Benachrichtigen bei ignorierten Party-Mitgliedern",
   "settings.partyListMarker": "Ignorierte in Partyliste markieren",
   "settings.socialMarker": "Ignorierte im Social-Fenster markieren (experimentell)",
+  "settings.markBlocked": "Geblockte Spieler in Partylisten rot markieren",
   "settings.autoPruneHint": "Abgelaufene Einträge werden automatisch entfernt (Prüfung alle 30 s).",
   "settings.confirmBeforeAdd": "Vor dem Hinzufügen bestätigen",
   "settings.confirmBeforeAddHint": "Beim Hinzufügen über Kontextmenü oder Befehl erst ein Fenster zum Prüfen/Bearbeiten öffnen.",
