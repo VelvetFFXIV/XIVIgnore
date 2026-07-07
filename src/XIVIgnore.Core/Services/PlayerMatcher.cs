@@ -11,7 +11,7 @@ public sealed class PlayerMatcher : IDisposable
     private readonly IgnoreStore _store;
     private readonly IClock _clock;
     private Dictionary<(string Name, uint WorldId), FilterAction> _cache = new();
-    // Membership: every non-expired entry — REGARDLESS of its effect.
+    // Membership: every non-expired entry, REGARDLESS of its effect.
     // For awareness (marker/notification) merely being listed counts, even with effect None
     // ("watch only"). Filters, by contrast, still gate on GetActions (= the effective action).
     private HashSet<(string Name, uint WorldId)> _listed = new();
@@ -33,7 +33,7 @@ public sealed class PlayerMatcher : IDisposable
     public bool IsIgnored(string name, uint worldId) => GetActions(name, worldId) != FilterAction.None;
 
     /// <summary>
-    /// True if a non-expired entry exists for (Name, World) — regardless of the
+    /// True if a non-expired entry exists for (Name, World), regardless of the
     /// effective action. Meant for awareness (marker/notification); a "watch only"
     /// entry (action None) is listed but hidden by no filter.
     /// </summary>

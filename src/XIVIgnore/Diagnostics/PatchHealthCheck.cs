@@ -14,7 +14,7 @@ namespace XIVIgnore.Diagnostics;
 // DEBUG-ONLY patch self-test.
 //
 // Purpose: after an FFXIV patch, automatically check whether the few low-level touch points
-// (FFXIVClientStructs) still work — an early warning BEFORE you manually test every feature.
+// (FFXIVClientStructs) still work, an early warning BEFORE you manually test every feature.
 // The probes can't prove "correct offsets", but they catch exactly the symptoms of a break:
 // null instances, absurd counts, empty node walks, exceptions on access.
 //
@@ -78,7 +78,7 @@ public sealed unsafe class PatchHealthCheck : IDisposable
             _log.Information("[PatchCheck] ===== XIVIgnore touch-point self-test ({0}) =====", trigger);
             if (patched)
             {
-                _log.Warning("[PatchCheck] Game version: {0} -> {1}  (PATCH DETECTED — re-check touch points thoroughly!)",
+                _log.Warning("[PatchCheck] Game version: {0} -> {1}  (PATCH DETECTED, re-check touch points thoroughly!)",
                             _config.LastSeenGameVersion, gv);
             }
             else
@@ -99,7 +99,7 @@ public sealed unsafe class PatchHealthCheck : IDisposable
             }
             else
             {
-                _log.Warning("[PatchCheck] ===== Result: {0} warning(s) — review the low-level touch points =====", warn);
+                _log.Warning("[PatchCheck] ===== Result: {0} warning(s), review the low-level touch points =====", warn);
             }
 
             // Remember the version only AFTER the run, so the patch banner appears exactly once.
@@ -127,7 +127,7 @@ public sealed unsafe class PatchHealthCheck : IDisposable
         }
         catch (Exception ex)
         {
-            _log.Warning("[PatchCheck] [WARN] {0}: exception {1} ({2}) — likely struct/offset break",
+            _log.Warning("[PatchCheck] [WARN] {0}: exception {1} ({2}), likely struct/offset break",
                         name, ex.GetType().Name, ex.Message);
             return 1;
         }

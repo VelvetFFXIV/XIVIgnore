@@ -21,7 +21,7 @@ public sealed class ListTab
     private string _search = string.Empty;
     private Guid? _filterCategory;
 
-    // ── Edit modal ────────────────────────────────────────────────────────────
+    // Edit modal
     // editId != null → modal open / should open. Field state lives in EntryEditForm.
     private Guid? _editId;
     private readonly EntryEditForm _editForm;
@@ -73,7 +73,7 @@ public sealed class ListTab
 
     private void DrawTable()
     {
-        // NO Resizable: in this ImGui binding NoSavedSettings didn't take — the column widths were
+        // NO Resizable: in this ImGui binding NoSavedSettings didn't take, the column widths were
         // saved anyway and overrode the code widths. Without Resizable there's nothing to save →
         // the fixed action/timestamp widths always apply, the rest stretches with the window.
         var flags = ImGuiTableFlags.RowBg | ImGuiTableFlags.Borders
@@ -88,7 +88,7 @@ public sealed class ListTab
         }
 
         // Fixed widths from the real text widths + a generous buffer (frame/cell padding + spacing
-        // between the two buttons). Deliberately NOT dependent on ImGui.GetStyle() values — those can
+        // between the two buttons). Deliberately NOT dependent on ImGui.GetStyle() values, those can
         // be 0 in the plugin context; then the padding was missing and "Remove" got cut off.
         float actionWidth = ImGui.CalcTextSize(_loc.Get("common.edit")).X
                           + ImGui.CalcTextSize(_loc.Get("common.remove")).X + 64f;
@@ -123,7 +123,7 @@ public sealed class ListTab
             ImGui.TableNextRow();
             ImGui.TableNextColumn(); ImGui.TextUnformatted(e.Name);
             ImGui.TableNextColumn(); ImGui.TextUnformatted(e.WorldName);
-            ImGui.TableNextColumn(); ImGui.TextUnformatted(_store.FindCategory(e.CategoryId)?.Name ?? "—");
+            ImGui.TableNextColumn(); ImGui.TextUnformatted(_store.FindCategory(e.CategoryId)?.Name ?? "-");
             ImGui.TableNextColumn(); ImGui.TextUnformatted(FormatEffectiveActions(e));
             ImGui.TableNextColumn();
             ImGui.TextWrapped(e.Note);   // multi-line instead of cut off; the row grows with it
@@ -153,7 +153,7 @@ public sealed class ListTab
         }
     }
 
-    // ── Effect column ─────────────────────────────────────────────────────────
+    // Effect column
 
     /// <summary>
     /// Returns the entry's effective FilterAction:
@@ -170,7 +170,7 @@ public sealed class ListTab
         var a = EffectiveActions(e);
         if (a == FilterAction.None)
         {
-            return "—";
+            return "-";
         }
 
         var parts = new List<string>(4);
@@ -197,7 +197,7 @@ public sealed class ListTab
         return string.Join(" · ", parts);
     }
 
-    // ── Edit modal ────────────────────────────────────────────────────────────
+    // Edit modal
 
     private void OpenEditModal(Guid id)
     {

@@ -118,7 +118,7 @@ public sealed class IgnoreStore
 
     /// <summary>
     /// Removes the Character effect from every entry override (Nameplate stays). Category defaults are
-    /// left untouched — they simply have no effect while the global switch is off. Called when it is turned off.
+    /// left untouched, they simply have no effect while the global switch is off. Called when it is turned off.
     /// </summary>
     public void StripCharacterHide()
     {
@@ -144,7 +144,7 @@ public sealed class IgnoreStore
 
     /// <summary>
     /// Creates the default categories if none exist yet (localized).
-    /// Returns the Id of the fallback category ("misc", the last entry) — on first
+    /// Returns the Id of the fallback category ("misc", the last entry), on first
     /// seeding the freshly created one; for existing data the one matched by legacy name; otherwise null.
     /// </summary>
     public Guid? EnsureDefaultCategories(Localizer loc)

@@ -15,7 +15,7 @@ namespace XIVIgnore.Awareness;
 // the name text node red. The addon has no typed struct → we traverse the generic node tree via
 // UldManager.NodeList.
 //
-// CRASH SAFETY (critical — a wrong pointer crashes the game):
+// CRASH SAFETY (critical, a wrong pointer crashes the game):
 //  - We dereference ONLY node pointers found in the CURRENT walk of this addon.
 //  - Remembered original colors for nodes no longer in the current walk (window reopened,
 //    tab switched) are dropped WITHOUT dereferencing → no stale-pointer access.
@@ -119,11 +119,11 @@ public sealed unsafe class SocialPartyMarker : IDisposable
                     .Select(p => ((AtkTextNode*)p)->NodeText.ToString().Trim())
                     .Where(t => t.Length > 0)
                     .ToList();
-                _log.Information($"[SPM] found textnodes: {texts.Count} — [{string.Join(", ", texts.Select(t => $"\"{t}\""))}]");
+                _log.Information($"[SPM] found textnodes: {texts.Count}, [{string.Join(", ", texts.Select(t => $"\"{t}\""))}]");
             }
 #endif
 
-            // 5. Mark/restore — exclusively via CURRENT nodes (deref is safe).
+            // 5. Mark/restore, exclusively via CURRENT nodes (deref is safe).
             foreach (var ptr in _allTextNodes)
             {
                 var tn = (AtkTextNode*)ptr;

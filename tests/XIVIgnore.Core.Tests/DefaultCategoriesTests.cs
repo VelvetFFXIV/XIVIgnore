@@ -44,7 +44,7 @@ public class DefaultCategoriesTests : IDisposable
         Assert.Single(store.Categories);
     }
 
-    // ── Return-value tests ──────────────────────────────────────────────────────
+    // Return-value tests
 
     [Fact]
     public void EnsureDefaultCategories_fresh_store_returns_id_of_last_category()

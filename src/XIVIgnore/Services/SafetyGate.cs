@@ -12,8 +12,8 @@ namespace XIVIgnore.Services;
 // Returns false when hiding is unsafe (combat / duty / party).
 //
 // Party detection covers:
-//  1. Regular party (IPartyList) — same-world / in the same instance context.
-//  2. Cross-world party AND cross-world alliance (InfoProxyCrossRealm, via EntityId —
+//  1. Regular party (IPartyList), same-world / in the same instance context.
+//  2. Cross-world party AND cross-world alliance (InfoProxyCrossRealm, via EntityId,
 //     GetMemberByEntityId searches all sub-groups).
 //  Same-world alliance (24-man) happens practically only in duty content → covered by BoundByDuty.
 public sealed unsafe class SafetyGate

@@ -14,7 +14,7 @@ lassen sich in Kategorien sortieren, mit einer Notiz versehen und laufen von sel
 - **Party-Finder-Einträge ausblenden.**
 - **Namensschilder ausblenden.**
 - **Charaktermodell ausblenden** (experimentell, standardmäßig aus).
-- **Kategorien** — Belästigung, Spam, Spoiler, RMT, Sonstiges — jede mit einer Standard-Wirkung,
+- **Kategorien** (Belästigung, Spam, Spoiler, RMT, Sonstiges): jede mit einer Standard-Wirkung,
   die du pro Person überschreiben kannst.
 - **Notizen und Ablauf.** Gib einem Eintrag eine Notiz und eine Laufzeit, von Minuten bis
   Monaten, oder lass ihn dauerhaft stehen.

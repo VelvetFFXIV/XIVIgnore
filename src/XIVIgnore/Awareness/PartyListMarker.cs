@@ -17,7 +17,7 @@ namespace XIVIgnore.Awareness;
 // IMPORTANT (verified in-game):
 //  - The game RE-sets the name color on state changes (dead=gray, buffs/shield=re-render),
 //    in the update BEFORE the draw. So register on `PostUpdate` (every frame, after the game update,
-//    before the draw) and re-apply the red color EVERY frame — then our red gets drawn.
+//    before the draw) and re-apply the red color EVERY frame, then our red gets drawn.
 //    (PostDraw would be too late; a throttled update lets the game win on death/buff/shield.)
 //  - The expensive part (reading slot names + matching) is throttled (every ~200 ms); per frame only
 //    the color is set (by slot index, cheap).
@@ -33,7 +33,7 @@ public sealed unsafe class PartyListMarker : IDisposable
     private readonly Configuration _config;
     private readonly IPluginLog _log;
 
-    // Per slot (0–7): marked? and original color (for restoring).
+    // Per slot (0-7): marked? and original color (for restoring).
     private readonly bool[] _marked = new bool[8];
     private readonly ByteColor[] _origColor = new ByteColor[8];
     // Which slots are currently ignored (recomputed on a throttle).
@@ -99,7 +99,7 @@ public sealed unsafe class PartyListMarker : IDisposable
 #endif
 
                         // Players you've blocked in-game show up under a masked placeholder
-                        // ("Unknown 01") that always carries a digit — real names never do. Flag those
+                        // ("Unknown 01") that always carries a digit, real names never do. Flag those
                         // slots when blocked-marking is on, so a blocked member reads red too.
                         if (markBlocked && shown.Any(char.IsDigit))
                         {
@@ -237,7 +237,7 @@ public sealed unsafe class PartyListMarker : IDisposable
     {
         _addonLifecycle.UnregisterListener(OnPartyListUpdate);
         // Marked slots may stay red briefly until the game re-colors the party list
-        // (happens on every HP tick/state change) — self-healing.
+        // (happens on every HP tick/state change), self-healing.
         Array.Clear(_marked);
     }
 }

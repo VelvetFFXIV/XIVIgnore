@@ -15,7 +15,7 @@ namespace XIVIgnore.EntryPoints;
 // API notes (vs plan):
 // - IContextMenu.OnMenuOpened event exists as documented. ✓
 // - IMenuOpenedArgs.AddMenuItem(MenuItem item) is the correct method. ✓
-// - args.MenuType (not args.MenuType) — actually IMenuArgs.MenuType. ✓
+// - args.MenuType (not args.MenuType), actually IMenuArgs.MenuType. ✓
 // - args.Target is MenuTarget; cast to MenuTargetDefault for Default menus. ✓
 // - target.TargetHomeWorld is RowRef<World>; .RowId gives the uint world id. ✓
 // - MenuItem.Name is SeString (implicit conversion from string available). ✓
@@ -102,7 +102,7 @@ public sealed class ContextMenuHandler : IDisposable
 
             // Only ignore real players. If the target is an in-world object that is NOT a player
             // (striking dummy, NPC, monster, companion), we don't show the entry.
-            // TargetObject is null in pure name contexts (Party Finder listing, chat name) —
+            // TargetObject is null in pure name contexts (Party Finder listing, chat name),
             // those we allow, since they're player contexts anyway (additionally guarded by worldId).
             if (target.TargetObject is { } targetObj && targetObj.ObjectKind != ObjectKind.Pc)
             {

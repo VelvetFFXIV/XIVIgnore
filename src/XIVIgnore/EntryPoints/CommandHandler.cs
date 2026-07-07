@@ -60,7 +60,7 @@ public sealed class CommandHandler : IDisposable
             case "remove": HandleRemove(rest); break;
             case "list": HandleList(); break;
             case "health":
-                if (_onHealth != null) { _onHealth(); _chat.Print("[XIVIgnore] Patch self-test run — result in /xllog."); }
+                if (_onHealth != null) { _onHealth(); _chat.Print("[XIVIgnore] Patch self-test run, result in /xllog."); }
                 else
                 {
                     _chat.Print("[XIVIgnore] Patch self-test is only available in debug builds.");

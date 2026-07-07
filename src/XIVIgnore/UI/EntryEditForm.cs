@@ -207,7 +207,7 @@ public sealed class EntryEditForm
             ImGui.EndDisabled();
         }
 
-        // Switch off: the box above is disabled — point the user to the setting.
+        // Switch off: the box above is disabled, point the user to the setting.
         if (!partyFinderAllowed)
         {
             ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.82f, 0.25f, 1f));

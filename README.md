@@ -14,7 +14,7 @@ leave yourself a note, and let them expire on their own.
 - **Hide their Party Finder listings.**
 - **Hide their nameplates.**
 - **Hide the character model** (experimental, off by default).
-- **Categories** — Harassment, Spam, Spoiler, RMT, Misc — each with a default action you can
+- **Categories** (Harassment, Spam, Spoiler, RMT, Misc): each with a default action you can
   override for a single person.
 - **Notes and expiry.** Give an entry a note and a lifespan, from minutes to months, or make
   it permanent.

@@ -9,9 +9,9 @@ using XIVIgnore.Core.Services;
 namespace XIVIgnore.Services;
 
 // One-shot update notice in chat:
-//  A "updated"        — local version comparison (running vs. last reported).
-//  B "please update"  — Dalamud's own CheckForUpdateAsync() (NO own network call,
-//                       NO repo URL/persona in the source).
+//  A "updated":       local version comparison (running vs. last reported).
+//  B "please update": Dalamud's own CheckForUpdateAsync() (NO own network call,
+//                     NO repo URL/persona in the source).
 // Runs ONCE shortly after load, as soon as a player is in the world; then it unsubscribes.
 public sealed class UpdateNotifier : IDisposable
 {
@@ -57,7 +57,7 @@ public sealed class UpdateNotifier : IDisposable
         {
             var running = _pluginInterface.Manifest.AssemblyVersion;
 
-            // A: "updated" (local). ALWAYS advance the baseline — even with the feature disabled —
+            // A: "updated" (local). ALWAYS advance the baseline, even with the feature disabled,
             // so a later enable doesn't falsely report the current version as an "update".
             // Save only on an actual change.
             var isUpdate = VersionGate.IsUpdate(running, _config.LastNotifiedVersion);
@@ -93,7 +93,7 @@ public sealed class UpdateNotifier : IDisposable
         try
         {
             var upd = await _pluginInterface.CheckForUpdateAsync();
-            // PluginUpdate.Version is System.Version — no TryParse detour needed.
+            // PluginUpdate.Version is System.Version, no TryParse detour needed.
             if (upd?.Version is not { } latest)
             {
                 return;           // no update available
