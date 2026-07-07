@@ -71,7 +71,7 @@ public sealed unsafe class PartyAwareness : IDisposable
                     Announce(name, worldId);
                 }
             }
-            // Cross-world party: InfoProxyCrossRealm (IsCrossRealm) ───────────────────────
+            // Cross-world party: InfoProxyCrossRealm (IsCrossRealm)
             // GroupCount lives on the instance; static helpers read the actual data.
             // CrossRealmMember.NameString → string; HomeWorld → Int16 → uint.
             var proxy = InfoProxyCrossRealm.Instance();
@@ -105,7 +105,6 @@ public sealed unsafe class PartyAwareness : IDisposable
                     }
                 }
             }
-            // ─────────────────────────────────────────────────────────────────────────────
 
             _notified.RemoveWhere(k => !current.Contains(k));    // left party → reportable again
         }
@@ -119,7 +118,7 @@ public sealed unsafe class PartyAwareness : IDisposable
     {
         var entry = _store.Entries.FirstOrDefault(e => e.WorldId == worldId &&
             string.Equals(e.Name, name, StringComparison.OrdinalIgnoreCase));
-        var cat = _store.FindCategory(entry?.CategoryId)?.Name ?? "—";
+        var cat = _store.FindCategory(entry?.CategoryId)?.Name ?? "-";
         var note = string.IsNullOrWhiteSpace(entry?.Note) ? "" : $" · {entry!.Note}";
         var worldName = _worlds.ResolveName(worldId);
 

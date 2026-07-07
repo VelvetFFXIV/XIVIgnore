@@ -111,8 +111,8 @@ public class PlayerMatcherTests : IDisposable
         Assert.Equal(FilterAction.None, m.GetActions("Foo Bar", 73));
     }
 
-    // ── IsListed: Awareness (marker/notification) depends on LIST membership,
-    //    NOT on the effective action — a "watch only" entry (action None) counts. ──
+    // IsListed: Awareness (marker/notification) depends on LIST membership,
+    // NOT on the effective action, a "watch only" entry (action None) counts.
 
     [Fact]
     public void Entry_without_action_is_listed_but_not_ignored()

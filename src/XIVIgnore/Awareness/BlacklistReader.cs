@@ -14,7 +14,7 @@ namespace XIVIgnore.Awareness;
 // BlackListNumberArray.BlackListCount for the count. The real blacklist is NEVER modified.
 public sealed unsafe class BlacklistReader
 {
-    // Fixed array size of the UI arrays (FixedSizeArray200) – a hard upper bound against outliers.
+    // Fixed array size of the UI arrays (FixedSizeArray200), a hard upper bound against outliers.
     private const int MaxEntries = 200;
 
     private readonly IGameGui _gameGui;
@@ -32,7 +32,7 @@ public sealed unsafe class BlacklistReader
     public bool IsBlacklistOpen()
     {
         // GetAddonByName returns AtkUnitBasePtr; the addon stays in memory even after closing
-        // (hidden) — so check IsVisible, not just the address.
+        // (hidden), so check IsVisible, not just the address.
         try
         {
             var addon = (AtkUnitBase*)_gameGui.GetAddonByName("BlackList").Address;
@@ -53,7 +53,7 @@ public sealed unsafe class BlacklistReader
         var result = new List<(uint, string, string, string)>();
         try
         {
-            // Only read when the blacklist is visible — otherwise the UI arrays may be stale/empty.
+            // Only read when the blacklist is visible, otherwise the UI arrays may be stale/empty.
             var addon = (AtkUnitBase*)_gameGui.GetAddonByName("BlackList").Address;
             if (addon == null || !addon->IsVisible)
             {

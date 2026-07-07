@@ -32,7 +32,7 @@ public sealed class NameplateFilter : IDisposable
 
     // GameObjectId -> original (visible) VisibilityFlags value while we hide the plate.
     private readonly Dictionary<ulong, int> _hidden = new();
-    // Reused per update (no allocation per frame) — IDs of the currently active nameplates.
+    // Reused per update (no allocation per frame), IDs of the currently active nameplates.
     private readonly HashSet<ulong> _seen = new();
 
     public NameplateFilter(INamePlateGui nameplateGui, IObjectTable objectTable, PlayerMatcher matcher,
@@ -63,7 +63,7 @@ public sealed class NameplateFilter : IDisposable
 
             foreach (var handler in handlers)
             {
-                _seen.Add(handler.GameObjectId);   // even without a PlayerCharacter — for the despawn cleanup below
+                _seen.Add(handler.GameObjectId);   // even without a PlayerCharacter, for the despawn cleanup below
                 if (handler.PlayerCharacter is not { } pc)
                 {
                     continue;

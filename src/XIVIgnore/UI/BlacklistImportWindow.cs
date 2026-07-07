@@ -114,7 +114,7 @@ public sealed class BlacklistImportWindow : Window
             Refresh();
         }
 
-        // Important: players who stay on the game blacklist are blocked by the game itself —
+        // Important: players who stay on the game blacklist are blocked by the game itself,
         // XIVIgnore then can't fully capture them. Remove them from the game blacklist after import.
         ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.82f, 0.25f, 1f));
         ImGui.TextWrapped(_loc.Get("import.trackNotice"));

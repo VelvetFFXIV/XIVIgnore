@@ -16,7 +16,7 @@ namespace XIVIgnore.Awareness;
 //
 // Difference from SocialPartyMarker: there's no party context here → the displayed names are
 // matched against the COMPLETE ignore list (by name only; the world isn't reliably reachable in
-// the node walk → possible false hits on same-name players on another world — deliberately
+// the node walk → possible false hits on same-name players on another world, deliberately
 // accepted, this is a "coverage" feature).
 //
 // CRASH SAFETY (identical to SocialPartyMarker):
@@ -123,7 +123,7 @@ public sealed unsafe class SocialListMarker : IDisposable
                     .Select(p => ((AtkTextNode*)p)->NodeText.ToString().Trim())
                     .Where(t => t.Length > 0)
                     .ToList();
-                _log.Information($"[SLM:{_addonName}] textnodes: {texts.Count} — [{string.Join(", ", texts.Select(t => $"\"{t}\""))}]");
+                _log.Information($"[SLM:{_addonName}] textnodes: {texts.Count}, [{string.Join(", ", texts.Select(t => $"\"{t}\""))}]");
             }
 #endif
 

@@ -23,7 +23,7 @@ public sealed class Configuration : IPluginConfiguration
     public bool SafetyExemptCombat { get; set; } = true;
     public bool SafetyExemptDuty { get; set; } = true;
 
-    // Chat exemption in party/duty (default OFF = chat stays filtered) — decision 0006
+    // Chat exemption in party/duty (default OFF = chat stays filtered), decision 0006
     public bool ChatExemptInPartyDuty { get; set; }
 
     public bool PartyAwarenessNotify { get; set; } = true;
@@ -46,10 +46,10 @@ public sealed class Configuration : IPluginConfiguration
     public string LastUpdateAvailableVersion { get; set; } = string.Empty;
     public bool UpdateMessagesEnabled { get; set; } = true;
 
-    // Last seen game version — for the debug patch self-test (detecting "a patch happened").
+    // Last seen game version, for the debug patch self-test (detecting "a patch happened").
     public string LastSeenGameVersion { get; set; } = string.Empty;
 
-    // Stable Id of the fallback category ("misc") — replaces the former name lookup ("Sonstiges").
+    // Stable Id of the fallback category ("misc"), replaces the former name lookup ("Sonstiges").
     public Guid? FallbackCategoryId { get; set; }
 
     // Canonical Dalamud pattern: no static plugin reference, but an injected

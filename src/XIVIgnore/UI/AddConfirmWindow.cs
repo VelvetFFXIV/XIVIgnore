@@ -49,7 +49,7 @@ public sealed class AddConfirmWindow : Window
 
     /// <summary>
     /// Opens the dialog empty (main "Add"): fallback category + its default effect
-    /// pre-filled, name/world empty, permanent. The user fills it in and confirms — so the
+    /// pre-filled, name/world empty, permanent. The user fills it in and confirms, so the
     /// effect is chosen deliberately too (instead of just the category like in the old inline row).
     /// </summary>
     public void BeginBlank()

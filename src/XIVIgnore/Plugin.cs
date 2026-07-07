@@ -57,7 +57,7 @@ public sealed class Plugin : IDalamudPlugin
     private DateTimeOffset _lastPrune = DateTimeOffset.MinValue;
 
     // Constructor injection: Dalamud injects these services on the ONE-TIME instantiation.
-    // NO pluginInterface.Create<Plugin>() — that would recursively rebuild the plugin (runaway memory).
+    // NO pluginInterface.Create<Plugin>(), that would recursively rebuild the plugin (runaway memory).
     public Plugin(
         IDalamudPluginInterface pluginInterface,
         ICommandManager commandManager,

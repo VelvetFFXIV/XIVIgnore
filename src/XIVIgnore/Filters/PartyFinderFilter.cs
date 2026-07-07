@@ -13,7 +13,7 @@ namespace XIVIgnore.Filters;
 //   PartyFinderListingEventDelegate(IPartyFinderListing listing, IPartyFinderListingEventArgs args)
 // IPartyFinderListing.Name      → SeString  → .TextValue for plain string
 // IPartyFinderListing.HomeWorld → RowRef<World> → .RowId for uint world id
-// IPartyFinderListingEventArgs.Visible → bool { get; set; } — setting false hides the listing
+// IPartyFinderListingEventArgs.Visible → bool { get; set; }, setting false hides the listing
 public sealed class PartyFinderFilter : IDisposable
 {
     private readonly IPartyFinderGui _partyFinderGui;

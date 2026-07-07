@@ -97,7 +97,7 @@ public sealed class ChatFilter : IDisposable
                 return;
             }
 
-            message.PreventOriginal();                               // suppress — same as plan ✓
+            message.PreventOriginal();                               // suppress, same as plan ✓
         }
         catch (Exception ex)
         {
