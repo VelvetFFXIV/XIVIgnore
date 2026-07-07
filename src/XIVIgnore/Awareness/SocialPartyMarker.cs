@@ -259,11 +259,39 @@ public sealed unsafe class SocialPartyMarker : IDisposable
         return (start < s.Length ? s[start..] : s).ToLowerInvariant();
     }
 
-    // A blocked player is shown under a masked placeholder ("Unknown 01"). Real names never carry a
-    // digit, and pure-number nodes (levels, "7/8") never carry a letter — so a text with BOTH a
-    // letter and a digit is that mask, not a level and not a real name.
+    // The masked placeholder for a blocked player is "<word> <number>" ("Unknown 01"). Detect it
+    // structurally: strip a trailing run of digits, then the remainder must be letters/spaces only.
+    // Matches "Unknown 01"/"Unknown01"; rejects level numbers ("100"), party counts ("7/8") and
+    // locations with numbers, which keep another symbol ("Sigmascape V4.0" a '.', duty names a '-').
     private static bool IsMaskedBlockedName(string normalized)
-        => normalized.Length > 0 && normalized.Any(char.IsLetter) && normalized.Any(char.IsDigit);
+    {
+        int i = normalized.Length;
+        while (i > 0 && char.IsDigit(normalized[i - 1]))
+        {
+            i--;
+        }
+
+        if (i == normalized.Length)
+        {
+            return false;   // no trailing number
+        }
+
+        var head = normalized[..i].TrimEnd();
+        if (head.Length == 0)
+        {
+            return false;   // digits only (e.g. a level)
+        }
+
+        foreach (var c in head)
+        {
+            if (!char.IsLetter(c) && c != ' ')
+            {
+                return false;   // '.', '-', '/', … → a location or label, not the mask
+            }
+        }
+
+        return true;
+    }
 
     private static void AddNameVariants(HashSet<string> set, string full)
     {

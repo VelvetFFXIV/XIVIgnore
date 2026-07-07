@@ -3,6 +3,7 @@
 Newest on top.
 
 ## [Unreleased]
+- Fixed a case where party locations with numbers (e.g. "Sigmascape V4.0") were highlighted red in the social window.
 
 ## [v0.0.0.254] - 2026-07-05
 - The right-click add option is hidden for players the game has blocked (shown as "Unknown").
